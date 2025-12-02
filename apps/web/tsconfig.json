@@ -5,7 +5,13 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": "src/",
+    "paths": {
+      "@/styles/*": ["styles/*"],
+      "@/components/*": ["components/*"],
+      "@/lib/*": ["lib/*"]
+    }
   },
   "include": [
     "**/*.ts",
@@ -13,8 +19,9 @@
     "next-env.d.ts",
     "next.config.js",
     ".next/types/**/*.ts"
-  ],
+, "src/app/(auth)/reset-password/new-password"  ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  
 }

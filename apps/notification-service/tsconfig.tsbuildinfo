@@ -1,0 +1,1 @@
+{"root":["./src/app.ts","./src/index.ts","./src/config/email.ts","./src/config/resend.config.ts","./src/controller/onboarding/email-verification.controller.ts","./src/helper/sendemail.ts","./src/routes/index.ts","./src/routes/onboarding.route.ts","./src/utils/kafka.ts"],"version":"5.9.3"}
