@@ -1,0 +1,25 @@
+FROM oven/bun:latest AS base
+WORKDIR /usr/src/app
+
+# 1. Install Dependencies
+FROM base AS dependencies
+COPY package.json bun.lock turbo.json ./
+COPY packages ./packages
+COPY apps/api-gateway ./apps/api-gateway 
+RUN bun install
+
+# 3. Runner Image
+FROM base AS runner
+# Install OpenSSL for Prisma
+# CORRECT (For Debian/Bun Latest)
+RUN apt-get update -y && apt-get install -y openssl
+
+COPY --from=dependencies /usr/src/app/node_modules ./node_modules
+COPY --from=dependencies /usr/src/app/packages ./packages
+COPY --from=dependencies /usr/src/app/apps/api-gateway ./apps/api-gateway
+COPY --from=dependencies /usr/src/app/package.json ./package.json
+
+EXPOSE 5003
+
+# NO MIGRATIONS HERE - Just start the app
+CMD ["bun", "run", "start:gateway"]

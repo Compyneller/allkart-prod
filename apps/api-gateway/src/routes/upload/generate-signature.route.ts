@@ -5,7 +5,7 @@ const router: Router = Router();
 
 router.get(
   "/get-upload-signature",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       console.log(
         "------------------------------------------called---------------------------------------"

@@ -4,7 +4,6 @@ import {
   Home,
   Inbox,
   List,
-  Settings,
   ShoppingBasket,
   Store,
   User,
@@ -15,15 +14,14 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import SignOut from "features/auth/sign-out";
+import { useUserSession } from "hooks/useUserSession";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useUserSession } from "hooks/useUserSession";
-import SignOut from "features/auth/sign-out";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export enum UserRole {
@@ -43,12 +41,7 @@ const items = [
     icon: User,
     roles: [UserRole.ADMIN],
   },
-  {
-    title: "Seller Documents",
-    url: "/dashboard/admin/seller-documents",
-    icon: Book,
-    roles: [UserRole.ADMIN],
-  },
+
   {
     title: "Inbox",
     url: "/dashboard/inbox",

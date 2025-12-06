@@ -4,14 +4,10 @@ import proxy from "express-http-proxy";
 const router: Router = Router();
 
 router.get(
-  "/seller-documents",
-  proxy(`${process.env.BASE_URL}`, {
+  "/seller-documents/:id",
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
-      console.log(
-        `${process.env.BASE_URL}/api/v1/dashboard/admin/seller-documents`
-      );
-
-      return "/api/v1/admin/seller-documents";
+      return "/api/v1/dashboard/admin/seller-documents/" + req.params.id;
     },
     proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
       // Send userId as a custom header

@@ -1,0 +1,30 @@
+FROM oven/bun:latest AS base
+WORKDIR /usr/src/app
+
+# 1. Install Dependencies
+FROM base AS dependencies
+COPY package.json bun.lock turbo.json ./
+COPY packages ./packages
+# Copy all apps to ensure workspace resolution works, or specific app if pruned
+COPY apps/backend ./apps/backend
+RUN bun install 
+
+# 2. Generate Prisma (Necessary Step)
+RUN cd packages/auth-db && bunx prisma generate
+RUN cd packages/database && bunx prisma generate
+
+# 3. Runner Image
+FROM base AS runner
+# Install OpenSSL for Prisma
+# CORRECT (For Debian/Bun Latest)
+RUN apt-get update -y && apt-get install -y openssl
+
+COPY --from=dependencies /usr/src/app/node_modules ./node_modules
+COPY --from=dependencies /usr/src/app/packages ./packages
+COPY --from=dependencies /usr/src/app/apps/backend ./apps/backend
+COPY --from=dependencies /usr/src/app/package.json ./package.json
+
+EXPOSE 5000
+
+# Backend is the ONLY service that runs migrations
+CMD ["bun", "run", "start:backend"]

@@ -6,9 +6,10 @@ const router: Router = Router();
 
 router.post(
   "/category",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
-      return "/api/v1/dashboard/category";
+
+      return "/api/v1/dashboard/admin/category";
     },
     proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
       // Send userId as a custom header
@@ -26,9 +27,9 @@ router.post(
 );
 router.delete(
   "/category/:id",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
-      return `/api/v1/dashboard/category/${req.params.id}`;
+      return `/api/v1/dashboard/admin/category/${req.params.id}`;
     },
     proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
       // Send userId as a custom header

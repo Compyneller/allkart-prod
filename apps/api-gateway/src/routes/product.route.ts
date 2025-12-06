@@ -7,7 +7,7 @@ const router: Router = Router();
 router.post(
   "/create-product",
   checkSeller,
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/create-product";
     },
@@ -28,7 +28,7 @@ router.post(
 router.get(
   "/dashboard/products",
   checkSeller,
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/products";
     },
@@ -44,8 +44,9 @@ router.get(
 );
 router.get(
   "/all-products",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
+
       return "/api/v1/dashboard/all-products";
     },
     // proxyReqOptDecorator: (proxyReqOpts, srcReq) => {
@@ -60,7 +61,7 @@ router.get(
 );
 router.get(
   "/products/:id",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/products/" + req.params.id;
     },
@@ -69,7 +70,7 @@ router.get(
 router.delete(
   "/dashboard/delete-product/:productId",
   checkSeller,
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/delete-product/" + req.params.productId;
     },
@@ -86,7 +87,7 @@ router.delete(
 router.patch(
   "/dashboard/product/:id",
   checkSeller,
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/product/" + req.params.id;
     },
@@ -102,7 +103,7 @@ router.patch(
 );
 router.get(
   "/dashboard/product/:productId/:variantId",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return (
         "/api/v1/dashboard/product/" +

@@ -5,7 +5,7 @@ const router: Router = Router();
 
 router.post(
   "/address",
-  proxy("http://localhost:5000", {
+  proxy(`${process.env.BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       console.log("called");
 
@@ -27,7 +27,7 @@ router.post(
 );
 router.get(
   "/address",
-  proxy("http://localhost:5000", {
+  proxy(`${process.env.BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/user/address";
     },
@@ -43,7 +43,7 @@ router.get(
 );
 router.delete(
   "/address/:id",
-  proxy("http://localhost:5000", {
+  proxy(`${process.env.BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/user/address/" + req.params.id;
     },
@@ -59,7 +59,7 @@ router.delete(
 );
 router.patch(
   "/address/:id",
-  proxy("http://localhost:5000", {
+  proxy(`${process.env.BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/user/address/" + req.params.id;
     },

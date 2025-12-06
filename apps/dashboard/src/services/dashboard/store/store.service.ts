@@ -16,7 +16,7 @@ export const createStoreService = async ({
   userEmail: string;
 }) => {
   try {
-    const response = await prisma.$transaction(async (tsx: any) => {
+    const response = await prisma.$transaction(async (tsx) => {
       const storeData = await tsx.store.create({
         data: {
           ...body.storeDetails,
@@ -56,20 +56,18 @@ export const createStoreService = async ({
       return { storeData, sellerDoc, bankDetails };
     });
 
-    if (response) {
-      const rzres = await createRazorpayAccountService({
-        userEmail: userEmail,
-        data: body,
-        category: response?.storeData?.category?.name!,
-      });
+    // if (response) {
+    //   const rzres = await createRazorpayAccountService({
+    //     userEmail: userEmail,
+    //     data: body,
+    //     category: response?.storeData?.category?.name!,
+    //   });
 
-      console.log(rzres);
-    }
+    //   console.log(rzres);
+    // }
 
     return response;
   } catch (error) {
-    console.log(error);
-
     throw error;
   }
 };
@@ -136,7 +134,7 @@ export const deleteStoreService = async ({
       return;
     }
 
-    const publicIds = storeData.map((product: ProductType) => {
+    const publicIds = storeData.map((product) => {
       return product.variants.map((variant) => {
         return variant.prod_img.map((img) => img.publicId);
       });

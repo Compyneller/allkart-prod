@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { ApiError } from "@repo/express-middleware";
 import { getAllUserService } from "../../services/admin/users.service";
 import { userdb } from "@repo/auth-db";
+import { prisma } from "@repo/db";
 
 export const getAllUserController = async (req: Request, res: Response) => {
   const userRole = req.headers["x-user-role"];
@@ -85,15 +86,32 @@ export const deleteUserController = async (req: Request, res: Response) => {
       throw new ApiError("Admin cannot be deleted", { status: 402 });
     }
 
-    await userdb.user.delete({
-      where: {
-        id: id,
-      },
-    });
-    res.status(200).json({
-      success: true,
-      message: "User deleted successfully",
-    });
+    if (findUser?.role === "user") {
+      await userdb.user.delete({
+        where: {
+          id: id,
+        },
+      });
+      return res.status(200).json({
+        success: true,
+        message: "User deleted successfully",
+      });
+    } else {
+      await userdb.user.delete({
+        where: {
+          id: id,
+        },
+      });
+      await prisma.store.deleteMany({
+        where: {
+          userId: id,
+        },
+      });
+      return res.status(200).json({
+        success: true,
+        message: "User deleted successfully",
+      });
+    }
   } catch (error) {
     if (error instanceof Error) {
       throw new ApiError(error.message, { status: 400 });

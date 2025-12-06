@@ -1,0 +1,21 @@
+FROM oven/bun:latest 
+
+WORKDIR /usr/src/app 
+
+# Copy root package.json and lockfile
+COPY package.json ./
+COPY bun.lock ./
+# Copy the api package.json
+COPY apps/web/package.json ./apps/web/package.json
+COPY packages ./packages
+
+RUN bun install
+
+# Copy app source
+COPY . .
+
+RUN bun run build --filter=web
+
+EXPOSE 3000
+
+CMD [ "bun", "run", "start:web" ]

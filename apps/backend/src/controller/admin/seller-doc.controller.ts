@@ -12,10 +12,12 @@ export const getSellerDocController = async (req: Request, res: Response) => {
 
   try {
     const users = await getSellerDocService();
+    console.log(users);
 
     return res.status(200).json({
       success: true,
       data: users,
+      message: "Seller documents fetched successfully",
     });
   } catch (error: any) {
     if (error instanceof Error) {

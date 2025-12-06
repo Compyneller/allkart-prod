@@ -4,7 +4,7 @@ import proxy from "express-http-proxy";
 const router: Router = Router();
 router.post(
   "/delete-image",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/delete-image";
     },

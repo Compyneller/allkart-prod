@@ -18,7 +18,7 @@ export const getStoreController = async (
     throw new ApiError("Forbidden Access", { status: 403 });
   }
   try {
-    const storeData = await getStoreService();
+    const storeData = await getStoreService({ id });
 
     res.status(200).json({
       data: storeData,

@@ -34,7 +34,7 @@ const CreateStoreForm = ({ data }: { data?: StoreSchemaTypes }) => {
       categoryId: storeDetails
         ? storeDetails.categoryId
         : data?.categoryId || "",
-      home_delivery: storeDetails
+      home_delivery: storeDetails?.home_delivery
         ? storeDetails.home_delivery
         : data?.home_delivery || false,
       delivery_charge: storeDetails

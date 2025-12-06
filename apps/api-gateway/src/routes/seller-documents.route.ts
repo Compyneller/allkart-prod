@@ -5,7 +5,7 @@ const router: Router = Router();
 
 router.post(
   "/seller-documents",
-  proxy("http://localhost:5000", {
+  proxy(`${process.env.BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/seller-documents";
     },

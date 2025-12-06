@@ -16,6 +16,7 @@ const ListProducts = ({ id }: { id: string }) => {
             key={variant.id}
             data={variant}
             product={item}
+            options={false}
           />
         ));
       })}

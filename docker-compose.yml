@@ -1,0 +1,310 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: turborepo-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Tiger123
+      POSTGRES_MULTIPLE_DATABASES: "user, ecommerce"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+    networks:
+      - app_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    container_name: allkart-backend
+    build:
+      context: .
+      dockerfile: apps/backend/DockerFile.backend
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - BETTER_AUTH_URL=http://localhost:5000
+      # Backend receives requests from gateway only (server-to-server)
+      # No CORS needed since gateway makes server-side requests
+      - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+      - ECOMMERCE_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/ecommerce
+      - BETTER_AUTH_SECRET=vdr173T5JOAKnbFiNGIuaXqhVJd1bgxC
+      - CLIENT_ID=47784126693-fglqaf6n1cqmgt0uacs6vd1c27g9t9q0.apps.googleusercontent.com
+      - CLIENT_SECRET=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
+      - SMTP_HOST=smtp-relay.brevo.com
+      - SMTP_USER=96fbf1001@smtp-brevo.com
+      - SMTP_PASSWORD=xsmtpsib-3e114c21da83f8834394b275f8c209eebdf8595972cd8683e16cdd02f1df1489-PF6J98LOC3jsYhgR
+      - FROM_EMAIL=shubham.jsx@gmail.com
+      - APP_PASSWORD=qoqnkcxahpqrduwr
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app_network
+
+  dashboard:
+    container_name: allkart-dashboard
+    build:
+      context: .
+      dockerfile: apps/dashboard/DockerFile.dashboard
+    ports:
+      - "5003:5003"
+    environment:
+      - NODE_ENV=production
+      - PORT=5003
+      - BETTER_AUTH_URL=http://localhost:5000
+      # Dashboard receives requests from gateway only (server-to-server)
+      # No CORS needed since gateway makes server-side requests
+      - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+      - ECOMMERCE_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/ecommerce
+      - BETTER_AUTH_SECRET=vdr173T5JOAKnbFiNGIuaXqhVJd1bgxC
+      - CLIENT_ID=47784126693-fglqaf6n1cqmgt0uacs6vd1c27g9t9q0.apps.googleusercontent.com
+      - CLIENT_SECRET=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
+      - SMTP_HOST=smtp-relay.brevo.com
+      - SMTP_USER=96fbf1001@smtp-brevo.com
+      - SMTP_PASSWORD=xsmtpsib-3e114c21da83f8834394b275f8c209eebdf8595972cd8683e16cdd02f1df1489-PF6J98LOC3jsYhgR
+      - FROM_EMAIL=shubham.jsx@gmail.com
+      - APP_PASSWORD=qoqnkcxahpqrduwr
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app_network
+
+  notification:
+    container_name: allkart-notification
+    build:
+      context: .
+      dockerfile: apps/notification-service/DockerFile.notification
+    ports:
+      - "5002:5002"
+    environment:
+      - NODE_ENV=production
+      - PORT=5002
+      - AUTH_ORIGIN=http://backend:5000
+      - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+      - SMTP_HOST=smtp-relay.brevo.com
+      - SMTP_USER=96fbf1001@smtp-brevo.com
+      - SMTP_PASSWORD=xsmtpsib-3e114c21da83f8834394b275f8c209eebdf8595972cd8683e16cdd02f1df1489-PF6J98LOC3jsYhgR
+      - FROM_EMAIL=shubham.jsx@gmail.com
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app_network
+
+  gateway:
+    container_name: allkart-gateway
+    build:
+      context: .
+      dockerfile: apps/api-gateway/DockerFile.gateway
+    ports:
+      - "5001:5001"
+    environment:
+      - NODE_ENV=production
+      - PORT=5001
+      # FIXED: Allow requests from the browser at localhost:3000
+      - CORS_ORIGIN=http://localhost:3000
+      # Use container names for inter-service communication
+      - DASHBOARD_BASE_URL=http://dashboard:5003/api/v1
+      - ECOM_BASE_URL=http://dashboard:5003
+      - BASE_URL=http://backend:5000
+      - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+      - ECOMMERCE_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/ecommerce
+      - BETTER_AUTH_SECRET=vdr173T5JOAKnbFiNGIuaXqhVJd1bgxC
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app_network
+
+  web:
+    container_name: allkart-web
+    build:
+      context: .
+      dockerfile: apps/web/DockerFile.web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      # FIXED: Use localhost for browser-side requests (public URL)
+      - BASE_URL=http://localhost:5001
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3000
+      - DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+
+
+networks:
+  app_network:
+    driver: bridge
+
+# version: "3.8"
+
+# services:
+#   postgres:
+#     image: postgres:16-alpine
+#     container_name: turborepo-postgres
+#     restart: always
+#     ports:
+#       - "5432:5432"
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: Tiger123
+#       POSTGRES_MULTIPLE_DATABASES: "user, ecommerce"
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#       - ./init-db:/docker-entrypoint-initdb.d
+#     networks:
+#       - app_network
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U postgres"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 5
+
+#   backend:
+#     container_name: allkart-backend
+#     build:
+#       context: .
+#       dockerfile: docker/DockerFile.backend
+#     ports:
+#       - "5000:5000"
+#     environment:
+#       - NODE_ENV=production
+#       - PORT=5000
+#       - BETTER_AUTH_URL=http://localhost:5000
+#       # Backend receives requests from gateway only (server-to-server)
+#       # No CORS needed since gateway makes server-side requests
+#       - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+#       - ECOMMERCE_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/ecommerce
+#       - BETTER_AUTH_SECRET=vdr173T5JOAKnbFiNGIuaXqhVJd1bgxC
+#       - CLIENT_ID=47784126693-fglqaf6n1cqmgt0uacs6vd1c27g9t9q0.apps.googleusercontent.com
+#       - CLIENT_SECRET=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
+#       - SMTP_HOST=smtp-relay.brevo.com
+#       - SMTP_USER=96fbf1001@smtp-brevo.com
+#       - SMTP_PASSWORD=xsmtpsib-3e114c21da83f8834394b275f8c209eebdf8595972cd8683e16cdd02f1df1489-PF6J98LOC3jsYhgR
+#       - FROM_EMAIL=shubham.jsx@gmail.com
+#       - APP_PASSWORD=qoqnkcxahpqrduwr
+#     depends_on:
+#       postgres:
+#         condition: service_healthy
+#     networks:
+#       - app_network
+
+#   dashboard:
+#     container_name: allkart-dashboard
+#     build:
+#       context: .
+#       dockerfile: docker/DockerFile.dashboard
+#     ports:
+#       - "5003:5003"
+#     environment:
+#       - NODE_ENV=production
+#       - PORT=5003
+#       - BETTER_AUTH_URL=http://localhost:5000
+#       # Dashboard receives requests from gateway only (server-to-server)
+#       # No CORS needed since gateway makes server-side requests
+#       - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+#       - ECOMMERCE_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/ecommerce
+#       - BETTER_AUTH_SECRET=vdr173T5JOAKnbFiNGIuaXqhVJd1bgxC
+#       - CLIENT_ID=47784126693-fglqaf6n1cqmgt0uacs6vd1c27g9t9q0.apps.googleusercontent.com
+#       - CLIENT_SECRET=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
+#       - SMTP_HOST=smtp-relay.brevo.com
+#       - SMTP_USER=96fbf1001@smtp-brevo.com
+#       - SMTP_PASSWORD=xsmtpsib-3e114c21da83f8834394b275f8c209eebdf8595972cd8683e16cdd02f1df1489-PF6J98LOC3jsYhgR
+#       - FROM_EMAIL=shubham.jsx@gmail.com
+#       - APP_PASSWORD=qoqnkcxahpqrduwr
+#     depends_on:
+#       postgres:
+#         condition: service_healthy
+#     networks:
+#       - app_network
+
+#   notification:
+#     container_name: allkart-notification
+#     build:
+#       context: .
+#       dockerfile: docker/DockerFile.notification
+#     ports:
+#       - "5002:5002"
+#     environment:
+#       - NODE_ENV=production
+#       - PORT=5002
+#       - AUTH_ORIGIN=http://backend:5000
+#       - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+#       - SMTP_HOST=smtp-relay.brevo.com
+#       - SMTP_USER=96fbf1001@smtp-brevo.com
+#       - SMTP_PASSWORD=xsmtpsib-3e114c21da83f8834394b275f8c209eebdf8595972cd8683e16cdd02f1df1489-PF6J98LOC3jsYhgR
+#       - FROM_EMAIL=shubham.jsx@gmail.com
+#     depends_on:
+#       postgres:
+#         condition: service_healthy
+#     networks:
+#       - app_network
+
+#   gateway:
+#     container_name: allkart-gateway
+#     build:
+#       context: .
+#       dockerfile: docker/DockerFile.Gateway
+#     ports:
+#       - "5001:5001"
+#     environment:
+#       - NODE_ENV=production
+#       - PORT=5001
+#       # FIXED: Allow requests from the browser at localhost:3000
+#       - CORS_ORIGIN=http://localhost:3000
+#       # Use container names for inter-service communication
+#       - DASHBOARD_BASE_URL=http://dashboard:5003/api/v1
+#       - ECOM_BASE_URL=http://dashboard:5003
+#       - BASE_URL=http://backend:5000
+#       - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+#       - ECOMMERCE_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/ecommerce
+#       - BETTER_AUTH_SECRET=vdr173T5JOAKnbFiNGIuaXqhVJd1bgxC
+#     depends_on:
+#       postgres:
+#         condition: service_healthy
+#     networks:
+#       - app_network
+
+#   web:
+#     container_name: allkart-web
+#     build:
+#       context: .
+#       dockerfile: docker/DockerFile.web
+#     ports:
+#       - "3000:3000"
+#     environment:
+#       - NODE_ENV=production
+#       # FIXED: Use localhost for browser-side requests (public URL)
+#       - BASE_URL=http://localhost:5001
+#       - NEXT_PUBLIC_BASE_URL=http://localhost:3000
+#       - DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
+#     depends_on:
+#       postgres:
+#         condition: service_healthy
+#     networks:
+#       - app_network
+
+# volumes:
+#   postgres_data:
+
+# networks:
+#   app_network:
+#     driver: bridge

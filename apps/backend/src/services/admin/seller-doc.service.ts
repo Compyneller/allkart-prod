@@ -1,11 +1,7 @@
-import { userdb } from "@repo/auth-db";
-export const getSellerDocService = async () => {
-  // try {
-  //   const data = await userdb.sellerDocuments.findMany();
-  //   return data;
-  // } catch (error) {
-  //   if (error instanceof Error) throw new Error(error.message);
-  // }
+import { prisma } from "@repo/db";
 
-  return "hello";
+export const getSellerDocService = async () => {
+  const data = await prisma.sellerDocuments.findMany();
+
+  return data;
 };

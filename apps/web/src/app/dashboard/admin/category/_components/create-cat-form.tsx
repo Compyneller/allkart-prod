@@ -48,7 +48,7 @@ const CreateCategoryForm = () => {
       bytes: image[0]?.bytes,
     };
 
-    const { data } = await api.post("/api/v1/dashboard/category", body);
+    const { data } = await api.post("/api/v1/dashboard/admin/category", body);
 
     form.reset();
     return data;

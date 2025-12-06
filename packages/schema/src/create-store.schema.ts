@@ -13,19 +13,33 @@ export const kycSchema = z.object({
     .min(12, "Aadhar must be 12 digits")
     .max(12, "Aadhar must be 12 digits")
     .regex(/^[0-9]{12}$/, "Invalid Aadhar format"),
-  gst: z.string().min(15, "GST must be at least 15 characters").optional(),
+  gst: z
+    .string()
+    .min(15, "GST must be at least 15 characters")
+    .optional()
+    .or(z.literal("")),
 });
 
 // Step 2: Store Details Validation
 export const storeDetailsSchema = z.object({
   shop_name: z.string().min(2, "Shop name must be at least 2 characters"),
   categoryId: z.string().min(1, "Please select a category"),
-  home_delivery: z.boolean(),
-  delivery_charge: z.number().min(0, "Delivery charge must be positive"),
-  handling_charge: z.number().min(0, "Handling charge must be positive"),
+  home_delivery: z.boolean().optional().or(z.literal(false)),
+  delivery_charge: z
+    .number()
+    .min(0, "Delivery charge must be positive")
+    .optional()
+    .or(z.literal(0)),
+  handling_charge: z
+    .number()
+    .min(0, "Handling charge must be positive")
+    .optional()
+    .or(z.literal(0)),
   free_delivery_after: z
     .number()
-    .min(0, "Free delivery amount must be positive"),
+    .min(0, "Free delivery amount must be positive")
+    .optional()
+    .or(z.literal(0)),
 });
 
 // Step 3: Address Validation

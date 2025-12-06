@@ -1,7 +1,23 @@
 import ProductCard from "@/components/product/product-card";
-import { CategoryType } from "@repo/types";
+import ProductSkeleton from "@/components/skeletons/product-skeleton";
+import { fetchAllProducts } from "data/allProducts";
 import Link from "next/link";
-const HomeProducts = ({ data }: { data: CategoryType[] }) => {
+const HomeProducts = () => {
+  const { data, isLoading, error } = fetchAllProducts();
+
+  if (isLoading) {
+    return <ProductSkeleton />;
+  }
+
+
+  if (data?.length === 0 || error) {
+    return <div className="w-full h-screen flex items-center justify-center"><div className="p-5 rounded-lg">
+      <h5 className="text-2xl font-semibold">No Products Found</h5>
+    </div> </div>
+  }
+
+
+
   return (
     <>
       {data?.map((cat) => (

@@ -1,0 +1,24 @@
+FROM oven/bun:latest AS base
+WORKDIR /usr/src/app
+
+# 1. Install Dependencies
+FROM base AS dependencies
+COPY package.json bun.lock turbo.json ./
+COPY packages ./packages
+COPY apps/notification-service ./apps/notification-service 
+RUN bun install
+
+
+FROM base AS runner
+
+RUN apt-get update -y && apt-get install -y openssl
+
+COPY --from=dependencies /usr/src/app/node_modules ./node_modules
+COPY --from=dependencies /usr/src/app/packages ./packages
+COPY --from=dependencies /usr/src/app/apps/notification-service ./apps/notification-service
+COPY --from=dependencies /usr/src/app/package.json ./package.json
+
+EXPOSE 5002
+
+# NO MIGRATIONS HERE - Just start the app
+CMD ["bun", "run", "start:notification"]

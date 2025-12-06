@@ -1,16 +1,18 @@
 import { ProductType, ProductVariant } from "@repo/types";
-import AddToCart from "../add-to-cart-button";
-import CardCarousel from "./card-carousel";
-import { VariantDrawer } from "./variant-drawer";
+import Image from "next/image";
 import Link from "next/link";
+import AddToCart from "../add-to-cart-button";
 import { Separator } from "../ui/separator";
+import { VariantDrawer } from "./variant-drawer";
 
 const ProductCard = ({
   pid,
   title,
   data,
   product,
+  options = true
 }: {
+  options?: boolean;
   pid: number;
   title: string;
   data: ProductVariant;
@@ -23,8 +25,13 @@ const ProductCard = ({
         href={`/product/${product.id}/variant/${data?.id}`}>
 
 
-        <div className="aspect-[1/1] bg-accent flex items-center justify-center w-full rounded-t-lg">
-          <CardCarousel images={data?.prod_img} />
+        <div className="aspect-square relative bg-accent flex items-center justify-center w-full rounded-t-lg">
+          <Image
+            fill
+            src={data?.prod_img[0]?.url!}
+            alt={`Variant Image`}
+            className="w-full aspect-square object-cover rounded-md"
+          />
         </div>
         <div className=" space-y-0.5">
           <p className="font-semibold text-lg capitalize">{title}</p>
@@ -40,7 +47,7 @@ const ProductCard = ({
           </div>
         </div>
       </Link>
-      {product?.variants?.length > 1 ? (
+      {product?.variants?.length > 1 && options ? (
         <VariantDrawer
           pid={pid}
           title={product?.title}

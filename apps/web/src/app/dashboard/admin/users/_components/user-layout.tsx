@@ -10,7 +10,6 @@ import { useDebounce } from "hooks/useDebounce";
 const UserLayout = () => {
   const [query, setQuery] = useState("");
   const searchTerm = useDebounce(query, 500);
-  console.log(searchTerm);
 
   const { data, isLoading } = fetchUsers();
   if (isLoading) {

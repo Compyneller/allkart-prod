@@ -1,23 +1,18 @@
 "use client";
 
-import * as React from "react";
-import { Minus, Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
+  DrawerTrigger
 } from "@/components/ui/drawer";
 import { ProductVariant } from "@repo/types";
-import Container from "../ui/container";
-import CardCarousel from "./card-carousel";
+import Image from "next/image";
 import AddToCart from "../add-to-cart-button";
+import Container from "../ui/container";
 import { Separator } from "../ui/separator";
 
 export function VariantDrawer({
@@ -46,8 +41,13 @@ export function VariantDrawer({
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {variants?.map((variant) => (
                 <div className="w-full  rounded-lg">
-                  <div className="aspect-[1/1] flex mb-5 items-center justify-center w-full rounded-t-lg">
-                    <CardCarousel images={variant?.prod_img} />
+                  <div className="aspect-square relative flex mb-5 items-center justify-center w-full rounded-t-lg">
+                    <Image
+                      fill
+                      src={variant?.prod_img[0]?.url!}
+                      alt={`Variant Image`}
+                      className="w-full aspect-square object-cover rounded-md"
+                    />
                   </div>
                   {/* <div className=" space-y-0.5 text-sm">
                                             <p>

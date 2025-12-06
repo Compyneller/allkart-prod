@@ -1,0 +1,28 @@
+FROM oven/bun:1-alpine AS base
+
+FROM base AS dependencies
+WORKDIR /usr/src/app
+COPY package.json bun.lock turbo.json ./
+COPY packages ./packages
+COPY apps/web ./apps/web
+RUN bun install
+
+FROM base AS build
+WORKDIR /usr/src/app
+COPY --from=dependencies /usr/src/app ./
+RUN bun run build --filter=web
+
+FROM base AS runner
+WORKDIR /usr/src/app
+ENV NODE_ENV=production
+
+COPY --from=build /usr/src/app/apps/web/.next ./apps/web/.next
+COPY --from=build /usr/src/app/apps/web/public ./apps/web/public
+COPY --from=build /usr/src/app/apps/web/package.json ./apps/web/
+COPY --from=build /usr/src/app/packages ./packages
+COPY --from=build /usr/src/app/node_modules ./node_modules
+COPY --from=build /usr/src/app/package.json ./
+
+EXPOSE 3000
+
+CMD ["bun", "run", "start:web"]

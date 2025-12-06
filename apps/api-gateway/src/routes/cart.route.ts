@@ -5,7 +5,7 @@ const router: Router = Router();
 
 router.post(
   "/cart",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/cart";
     },
@@ -25,7 +25,7 @@ router.post(
 );
 router.post(
   "/decrement-cart",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/decrement-cart";
     },
@@ -46,7 +46,7 @@ router.post(
 
 router.get(
   "/cart",
-  proxy("http://localhost:5003", {
+  proxy(`${process.env.ECOM_BASE_URL}`, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/cart";
     },

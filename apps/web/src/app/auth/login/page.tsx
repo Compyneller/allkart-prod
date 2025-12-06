@@ -9,7 +9,7 @@ const Login = () => {
   const router = useRouter();
 
   useEffect(() => {
-    authClient.getSession().then((session) => {
+    authClient.getSession().then((session: any) => {
       if (session.data != null) {
         router.back();
       }

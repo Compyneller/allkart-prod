@@ -1,10 +1,16 @@
 "use client";
 import CatCard from "@/components/cat-card";
-import { CategoryType } from "@repo/types";
+import CatCardSkeleton from "@/components/skeletons/cat-card-skeleton";
+import { fetchCategory } from "data/fetchCat";
 
-const CategoryListing = ({ data }: { data: CategoryType[] }) => {
+const CategoryListing = () => {
+  const { data, isLoading, error } = fetchCategory();
+
+  if (isLoading) {
+    return <CatCardSkeleton />;
+  }
   return (
-    <div className="flex gap-2 flex-wrap py-10">
+    <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-1 py-10">
       {data?.map((item) => (
         <CatCard data={item} key={item.id} />
       ))}

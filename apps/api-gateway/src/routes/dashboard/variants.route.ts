@@ -5,7 +5,7 @@ const router: Router = Router();
 
 router.get(
   "/variants/:pid",
-  proxy("http://localhost:5003", {
+  proxy(process.env.ECOM_BASE_URL!, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/variants/" + req.params.pid;
     },
@@ -21,7 +21,7 @@ router.get(
 );
 router.delete(
   "/variant/:vid",
-  proxy("http://localhost:5003", {
+  proxy(process.env.ECOM_BASE_URL!, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/variant/" + req.params.vid;
     },
@@ -37,7 +37,7 @@ router.delete(
 );
 router.post(
   "/variant",
-  proxy("http://localhost:5003", {
+  proxy(process.env.ECOM_BASE_URL!, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/variant";
     },
@@ -57,7 +57,7 @@ router.post(
 );
 router.patch(
   "/variant/:id",
-  proxy("http://localhost:5003", {
+  proxy(process.env.ECOM_BASE_URL!, {
     proxyReqPathResolver: (req) => {
       return "/api/v1/dashboard/variant/" + req.params.id;
     },

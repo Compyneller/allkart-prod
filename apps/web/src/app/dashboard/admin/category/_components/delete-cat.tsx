@@ -29,7 +29,7 @@ const DeleteCat = ({ catData }: { catData: CategoryType }) => {
     try {
       await deleteImage(catData.publicId);
       const { data } = await api.delete(
-        `/api/v1/dashboard/category/${catData.id}`
+        `/api/v1/dashboard/admin/category/${catData.id}`
       );
       return data;
     } catch (error) {
