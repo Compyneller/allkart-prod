@@ -1,20 +1,20 @@
 FROM oven/bun:latest 
 
 WORKDIR /usr/src/app 
-
 RUN apt-get update -y && apt-get install -y openssl
+
 # Copy root package.json and lockfile
 COPY package.json ./
 COPY bun.lock ./
+COPY packages ./packages
 # Copy the api package.json
 COPY apps/backend/package.json ./apps/backend/package.json
 
-RUN bun install
+RUN bun install --no-frozen-lockfile
 
 # Copy app source
 COPY . .
 
-COPY packages ./packages
 RUN cd packages/auth-db && bunx prisma generate
 RUN cd packages/database && bunx prisma generate
 
