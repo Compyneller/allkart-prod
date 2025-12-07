@@ -7,6 +7,7 @@ RUN apt-get update -y && apt-get install -y openssl
 COPY bun.lock ./
 COPY packages ./packages
 # Copy the api package.json
+COPY package.json ./
 COPY apps/backend/package.json ./apps/backend/package.json
 
 RUN bun install --no-frozen-lockfile
@@ -14,7 +15,6 @@ RUN bun install --no-frozen-lockfile
 # Copy app source
 COPY . .
 
-COPY package.json ./
 RUN cd packages/auth-db && bunx prisma generate
 RUN cd packages/database && bunx prisma generate
 
