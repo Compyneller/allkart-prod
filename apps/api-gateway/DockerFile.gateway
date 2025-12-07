@@ -2,10 +2,10 @@ FROM oven/bun:latest
 
 WORKDIR /usr/src/app 
 
+RUN apt-get update -y && apt-get install -y openssl
 # Copy root package.json and lockfile
 COPY package.json ./
 COPY bun.lock ./
-COPY packages ./packages
 # Copy the api package.json
 COPY apps/api-gateway/package.json ./apps/api-gateway/package.json
 
@@ -14,7 +14,7 @@ RUN bun install
 # Copy app source
 COPY . .
 
-RUN apt-get update -y && apt-get install -y openssl
+COPY packages ./packages
 
 EXPOSE 5001
 
