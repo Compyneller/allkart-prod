@@ -16,8 +16,8 @@ COPY apps/backend/package.json ./apps/backend/package.json
 COPY apps/backend ./apps/backend
 RUN bun install --no-frozen-lockfile
 
-RUN bun run db:auth-db
-RUN bun run db:database
+RUN bun run prisma generate --schema=./packages/auth-db/prisma/schema.prisma
+RUN bun run prisma generate --schema=./packages/database/prisma/schema.prisma
 
 
 EXPOSE 5000
