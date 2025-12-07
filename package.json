@@ -13,8 +13,8 @@
     "start:notification": "cd apps/notification-service && bun start",
     "start:gateway": "cd apps/api-gateway && bun start",
     "start:web": "cd apps/web && bun start",
-    "db:auth-db" : "cd packages/auth-db && bunx prisma migrate deploy && bunx prisma generate",
-    "db:database" : "cd packages/database && bunx prisma migrate deploy && bunx prisma generate"
+    "db:auth-db": "cd packages/auth-db && bunx prisma generate",
+    "db:database": "cd packages/database && bunx prisma generate"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
