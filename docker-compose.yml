@@ -29,6 +29,8 @@ services:
       dockerfile: apps/backend/DockerFile.backend
     ports:
       - "5000:5000"
+    env_file:
+      - apps/backend/.env
     environment:
       - NODE_ENV=production
       - PORT=5000
@@ -37,14 +39,14 @@ services:
       # No CORS needed since gateway makes server-side requests
       - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
       - ECOMMERCE_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/ecommerce
-      - BETTER_AUTH_SECRET=vdr173T5JOAKnbFiNGIuaXqhVJd1bgxC
-      - CLIENT_ID=47784126693-fglqaf6n1cqmgt0uacs6vd1c27g9t9q0.apps.googleusercontent.com
-      - CLIENT_SECRET=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
-      - SMTP_HOST=smtp-relay.brevo.com
-      - SMTP_USER=96fbf1001@smtp-brevo.com
-      - SMTP_PASSWORD=xsmtpsib-3e114c21da83f8834394b275f8c209eebdf8595972cd8683e16cdd02f1df1489-PF6J98LOC3jsYhgR
-      - FROM_EMAIL=shubham.jsx@gmail.com
-      - APP_PASSWORD=qoqnkcxahpqrduwr
+      - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - FROM_EMAIL=${FROM_EMAIL}
+      - APP_PASSWORD=${APP_PASSWORD}
     depends_on:
       postgres:
         condition: service_healthy
@@ -58,6 +60,8 @@ services:
       dockerfile: apps/dashboard/DockerFile.dashboard
     ports:
       - "5003:5003"
+    env_file:
+      - apps/dashboard/.env
     environment:
       - NODE_ENV=production
       - PORT=5003
@@ -66,14 +70,14 @@ services:
       # No CORS needed since gateway makes server-side requests
       - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
       - ECOMMERCE_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/ecommerce
-      - BETTER_AUTH_SECRET=vdr173T5JOAKnbFiNGIuaXqhVJd1bgxC
-      - CLIENT_ID=47784126693-fglqaf6n1cqmgt0uacs6vd1c27g9t9q0.apps.googleusercontent.com
-      - CLIENT_SECRET=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
-      - SMTP_HOST=smtp-relay.brevo.com
-      - SMTP_USER=96fbf1001@smtp-brevo.com
-      - SMTP_PASSWORD=xsmtpsib-3e114c21da83f8834394b275f8c209eebdf8595972cd8683e16cdd02f1df1489-PF6J98LOC3jsYhgR
-      - FROM_EMAIL=shubham.jsx@gmail.com
-      - APP_PASSWORD=qoqnkcxahpqrduwr
+      - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - FROM_EMAIL=${FROM_EMAIL}
+      - APP_PASSWORD=${APP_PASSWORD}
     depends_on:
       postgres:
         condition: service_healthy
@@ -87,15 +91,17 @@ services:
       dockerfile: apps/notification-service/DockerFile.notification
     ports:
       - "5002:5002"
+    env_file:
+      - apps/notification-service/.env
     environment:
       - NODE_ENV=production
       - PORT=5002
       - AUTH_ORIGIN=http://backend:5000
       - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
-      - SMTP_HOST=smtp-relay.brevo.com
-      - SMTP_USER=96fbf1001@smtp-brevo.com
-      - SMTP_PASSWORD=xsmtpsib-3e114c21da83f8834394b275f8c209eebdf8595972cd8683e16cdd02f1df1489-PF6J98LOC3jsYhgR
-      - FROM_EMAIL=shubham.jsx@gmail.com
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - FROM_EMAIL=${FROM_EMAIL}
     depends_on:
       postgres:
         condition: service_healthy
@@ -109,6 +115,8 @@ services:
       dockerfile: apps/api-gateway/DockerFile.gateway
     ports:
       - "5001:5001"
+    env_file:
+      - apps/api-gateway/.env
     environment:
       - NODE_ENV=production
       - PORT=5001
@@ -120,7 +128,7 @@ services:
       - BASE_URL=http://backend:5000
       - USER_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/user
       - ECOMMERCE_DATABASE_URL=postgresql://postgres:Tiger123@postgres:5432/ecommerce
-      - BETTER_AUTH_SECRET=vdr173T5JOAKnbFiNGIuaXqhVJd1bgxC
+      - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
     depends_on:
       postgres:
         condition: service_healthy

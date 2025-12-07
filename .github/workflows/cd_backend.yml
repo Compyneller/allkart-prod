@@ -1,0 +1,28 @@
+name: cd_backend
+
+on:
+  push:
+    branches:[ "main" ]
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Docker login 
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Build and push the Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./apps/backend/Dockerfile.backend
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/allkart-backend:${{ github.sha }}
+        
+      
+
