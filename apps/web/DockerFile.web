@@ -1,18 +1,20 @@
 FROM oven/bun:latest 
 
 WORKDIR /usr/src/app 
+RUN apt-get update -y && apt-get install -y openssl
 
 # Copy root package.json and lockfile
-COPY package.json ./
 COPY bun.lock ./
-# Copy the api package.json
-COPY apps/web/package.json ./apps/web/package.json
 COPY packages ./packages
+# Copy the api package.json
+COPY package.json ./
+COPY turbo.json ./
+COPY apps/web/package.json ./apps/web/package.json
 
-RUN bun install
 
 # Copy app source
-COPY . .
+COPY apps/web ./apps/web
+RUN bun install --no-frozen-lockfile
 
 RUN bun run build --filter=web
 

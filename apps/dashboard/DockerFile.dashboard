@@ -1,23 +1,24 @@
 FROM oven/bun:latest 
 
 WORKDIR /usr/src/app 
+RUN apt-get update -y && apt-get install -y openssl
 
 # Copy root package.json and lockfile
-COPY package.json ./
 COPY bun.lock ./
 COPY packages ./packages
 # Copy the api package.json
+COPY package.json ./
+COPY turbo.json ./
 COPY apps/dashboard/package.json ./apps/dashboard/package.json
 
-RUN bun install
 
 # Copy app source
-COPY . .
+COPY apps/dashboard ./apps/dashboard
+RUN bun install --no-frozen-lockfile
 
-RUN cd packages/auth-db && bunx prisma generate
-RUN cd packages/database && bunx prisma generate
+RUN bun run prisma generate --schema=./packages/auth-db/prisma/schema.prisma
+RUN bun run prisma generate --schema=./packages/database/prisma/schema.prisma
 
-RUN apt-get update -y && apt-get install -y openssl
 
 EXPOSE 5003
 

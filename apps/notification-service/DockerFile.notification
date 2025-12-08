@@ -1,23 +1,21 @@
 FROM oven/bun:latest 
 
 WORKDIR /usr/src/app 
+RUN apt-get update -y && apt-get install -y openssl
 
 # Copy root package.json and lockfile
-COPY package.json ./
 COPY bun.lock ./
 COPY packages ./packages
 # Copy the api package.json
+COPY package.json ./
+COPY turbo.json ./
 COPY apps/notification-service/package.json ./apps/notification-service/package.json
 
-RUN bun install
 
 # Copy app source
-COPY . .
+COPY apps/notification-service ./apps/notification-service
+RUN bun install --no-frozen-lockfile
 
-RUN cd packages/auth-db && bunx prisma generate
-RUN cd packages/database && bunx prisma generate
-
-RUN apt-get update -y && apt-get install -y openssl
 
 EXPOSE 5002
 

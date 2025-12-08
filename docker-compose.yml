@@ -29,8 +29,6 @@ services:
       dockerfile: apps/backend/DockerFile.backend
     ports:
       - "5000:5000"
-    env_file:
-      - apps/backend/.env
     environment:
       - NODE_ENV=production
       - PORT=5000
@@ -60,8 +58,6 @@ services:
       dockerfile: apps/dashboard/DockerFile.dashboard
     ports:
       - "5003:5003"
-    env_file:
-      - apps/dashboard/.env
     environment:
       - NODE_ENV=production
       - PORT=5003
@@ -91,8 +87,6 @@ services:
       dockerfile: apps/notification-service/DockerFile.notification
     ports:
       - "5002:5002"
-    env_file:
-      - apps/notification-service/.env
     environment:
       - NODE_ENV=production
       - PORT=5002
@@ -115,8 +109,6 @@ services:
       dockerfile: apps/api-gateway/DockerFile.gateway
     ports:
       - "5001:5001"
-    env_file:
-      - apps/api-gateway/.env
     environment:
       - NODE_ENV=production
       - PORT=5001
