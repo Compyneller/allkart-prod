@@ -10,7 +10,7 @@ const ProductCard = ({
   title,
   data,
   product,
-  options = true
+  options = true,
 }: {
   options?: boolean;
   pid: number;
@@ -19,18 +19,17 @@ const ProductCard = ({
   product: ProductType;
 }) => {
   return (
-    <div className="w-full rounded-lg">
+    <div className="w-full rounded-lg prod-card">
       <Link
         className="flex flex-col justify-center mb-3 gap-2"
-        href={`/product/${product.id}/variant/${data?.id}`}>
-
-
+        href={`/product/${product.id}/variant/${data?.id}`}
+      >
         <div className="aspect-square relative bg-accent flex items-center justify-center w-full rounded-t-lg">
           <Image
             fill
             src={data?.prod_img[0]?.url!}
             alt={`Variant Image`}
-            className="w-full aspect-square object-cover rounded-md"
+            className="w-full prod-image aspect-square object-cover rounded-md"
           />
         </div>
         <div className=" space-y-0.5">
@@ -41,8 +40,11 @@ const ProductCard = ({
               {data.unit_value} {data.unit}
             </p>
             <p>
-              <span className=" text-primary">₹{Number(data.selling_price)}</span> <span className="text-xs">M.R.P</span>{" "}
-              <span className="line-through italic" >₹{Number(data.mrp)}</span>
+              <span className=" text-primary">
+                ₹{Number(data.selling_price)}
+              </span>{" "}
+              <span className="text-xs">M.R.P</span>{" "}
+              <span className="line-through italic">₹{Number(data.mrp)}</span>
             </p>
           </div>
         </div>
@@ -54,9 +56,14 @@ const ProductCard = ({
           variants={product?.variants!}
         />
       ) : (
-        <AddToCart stock={data?.stock} size="sm" variantId={data.id!} productId={pid} />
+        <AddToCart
+          stock={data?.stock}
+          size="sm"
+          variantId={data.id!}
+          productId={pid}
+        />
       )}
-    </div >
+    </div>
   );
 };
 

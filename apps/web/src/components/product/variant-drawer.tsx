@@ -38,7 +38,7 @@ export function VariantDrawer({
           </DrawerHeader>
 
           <Container>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            <div className="grid prod-card grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {variants?.map((variant) => (
                 <div className="w-full  rounded-lg">
                   <div className="aspect-square relative flex mb-5 items-center justify-center w-full rounded-t-lg">
@@ -46,7 +46,7 @@ export function VariantDrawer({
                       fill
                       src={variant?.prod_img[0]?.url!}
                       alt={`Variant Image`}
-                      className="w-full aspect-square object-cover rounded-md"
+                      className="w-full prod-image aspect-square object-cover rounded-md"
                     />
                   </div>
                   {/* <div className=" space-y-0.5 text-sm">

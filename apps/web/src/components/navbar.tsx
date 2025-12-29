@@ -1,5 +1,6 @@
-import { SearchIcon, ShoppingBag } from "lucide-react";
-import { useId } from "react";
+'use client'
+import { SearchIcon } from "lucide-react";
+import { useEffect, useId } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,10 +15,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import useGeolocation from "hooks/useGeolocation";
 import Link from "next/link";
+import { Cart } from "./cart/cart";
 import { ModeToggle } from "./toggle";
 import User from "./user/user";
-import { Cart } from "./cart/cart";
+import { Spinner } from "./ui/spinner";
 
 const navigationLinks = [
   {
@@ -26,11 +29,18 @@ const navigationLinks = [
   },
 ];
 
-export default async function Navbar() {
+export default function Navbar() {
   const id = useId();
 
+  const { address, handleAutomaticAddress, isLoading, error } = useGeolocation()
+  useEffect(() => {
+    handleAutomaticAddress()
+  }, [])
+
+  console.log(address);
+
   return (
-    <header className="border-b px-4 md:px-6">
+    <header className="border-b sticky bg-background top-0 z-10  px-4 md:px-6">
       <div className="flex h-16 items-center justify-between gap-4">
         {/* Left side */}
         <div className="flex flex-1 items-center gap-2">
@@ -40,7 +50,8 @@ export default async function Navbar() {
               <Button
                 className="group size-8 md:hidden"
                 variant="ghost"
-                size="icon">
+                size="icon"
+              >
                 <svg
                   className="pointer-events-none"
                   width={16}
@@ -51,7 +62,8 @@ export default async function Navbar() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  xmlns="http://www.w3.org/2000/svg">
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     d="M4 12L20 12"
                     className="origin-center -translate-y-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-aria-expanded:translate-x-0 group-aria-expanded:translate-y-0 group-aria-expanded:rotate-[315deg]"
@@ -80,11 +92,13 @@ export default async function Navbar() {
                   <NavigationMenuItem
                     className="w-full"
                     role="presentation"
-                    aria-hidden="true">
+                    aria-hidden="true"
+                  >
                     <div
                       role="separator"
                       aria-orientation="horizontal"
-                      className="bg-border -mx-1 my-1 h-px"></div>
+                      className="bg-border -mx-1 my-1 h-px"
+                    ></div>
                   </NavigationMenuItem>
                   <NavigationMenuItem className="w-full">
                     <NavigationMenuLink href="#" className="py-1.5">
@@ -95,7 +109,8 @@ export default async function Navbar() {
                     <Button
                       asChild
                       size="sm"
-                      className="mt-0.5 w-full text-left text-sm">
+                      className="mt-0.5 w-full text-left text-sm"
+                    >
                       <span className="flex items-baseline gap-2">
                         Cart
                         <span className="text-primary-foreground/60 text-xs">
@@ -113,6 +128,9 @@ export default async function Navbar() {
             <Link href="/" className="text-primary hover:text-primary/90">
               AllKart
             </Link>
+            {
+              isLoading ? <Spinner /> : <p className="truncate text-xs">{address?.display_name}</p>
+            }
             {/* Navigation menu */}
             <NavigationMenu className="max-md:hidden">
               <NavigationMenuList className="gap-2">
@@ -120,7 +138,8 @@ export default async function Navbar() {
                   <NavigationMenuItem key={index}>
                     <NavigationMenuLink
                       href={link.href}
-                      className="text-muted-foreground hover:text-primary py-1.5 font-medium">
+                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                    >
                       {link.label}
                     </NavigationMenuLink>
                   </NavigationMenuItem>

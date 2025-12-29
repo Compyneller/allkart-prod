@@ -28,6 +28,10 @@ interface NominatimResponse {
 
 const useGeolocation = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState({
+    state: false,
+    message: ""
+  })
   const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
   const [address, setAddress] = useState<NominatimResponse | null>(null);
 
@@ -92,15 +96,29 @@ const useGeolocation = () => {
         // specific error handling
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            toast.error("Please allow location access in your browser.");
+            setError({
+              state: true,
+              message: "PERMISSION_DENIED"
+            })
             break;
           case error.POSITION_UNAVAILABLE:
-            toast.error("Location information is unavailable.");
+            setError({
+              state: true,
+              message: "POSITION_UNAVAILABLE"
+            })
             break;
           case error.TIMEOUT:
+            setError({
+              state: true,
+              message: "TIMEOUT"
+            })
             toast.error("The request to get user location timed out.");
             break;
           default:
+            setError({
+              state: true,
+              message: "DEFAULT"
+            })
             toast.error("An unknown error occurred.");
         }
       },
@@ -113,6 +131,7 @@ const useGeolocation = () => {
     coordinates,
     address,
     isLoading,
+    error,
     handleAutomaticAddress,
   };
 };
