@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
- 
   "exports": {
-    "." : "./src/index.ts"
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:studio": "prisma studio",
+    "db:generate:watch": "prisma generate --watch",
+    "db:studio:watch": "prisma studio --watch"
   },
   "keywords": [],
   "author": "",

@@ -6,6 +6,12 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:studio": "prisma studio",
+    "db:generate:watch": "prisma generate --watch",
+    "db:studio:watch": "prisma studio --watch"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
