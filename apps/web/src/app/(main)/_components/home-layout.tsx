@@ -89,7 +89,7 @@ const HomeLayout = () => {
   }
 
 
-  if (data.length === 0) {
+  if (data?.length === 0) {
     return (
       <div className="flex h-screen items-center justify-center">
         <p>No stores found in your area</p>
