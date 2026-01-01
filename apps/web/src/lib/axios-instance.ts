@@ -1,7 +1,7 @@
 import axios from "axios";
 const api = axios.create({
   // baseURL: process.env.BASE_URL || "http://localhost:5001",
-  baseURL: "http://ec2-65-0-11-78.ap-south-1.compute.amazonaws.com:5001",
+  baseURL: "https://api.bagalkidukaan.store",
 
   withCredentials: true,
 });
