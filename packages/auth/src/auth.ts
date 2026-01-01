@@ -28,8 +28,9 @@ export const auth = betterAuth({
       },
     },
   },
+
   trustedOrigins: [process.env.ORIGIN || "http://localhost:3000"],
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000/auth/login",
+  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:5000",
   secret: process.env.BETTER_AUTH_SECRET,
   emailAndPassword: {
     enabled: true,

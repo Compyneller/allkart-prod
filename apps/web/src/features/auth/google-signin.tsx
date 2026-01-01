@@ -10,8 +10,6 @@ const GoogleButton = () => {
       });
 
       localStorage.setItem("google", JSON.stringify(data));
-
-      console.log(data);
     } catch (error) {}
   };
   return (
