@@ -16,8 +16,7 @@ export const kycSchema = z.object({
   gst: z
     .string()
     .min(15, "GST must be at least 15 characters")
-    .optional()
-    .or(z.literal("")),
+    .optional(),
 });
 
 // Step 2: Store Details Validation

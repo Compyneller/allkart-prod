@@ -165,6 +165,8 @@ export const updateStoreService = async ({
   userId: string;
 }) => {
   try {
+
+
     const parsedBody = storeUpdateSchema.safeParse(body);
     if (!parsedBody.success) {
       throw new ApiError("Validation Error", {

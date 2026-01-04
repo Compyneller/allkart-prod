@@ -2,6 +2,7 @@ import z from "zod";
 const storeSchema = z.object({
   shop_name: z.string().min(2, "Shop name must be at least 2 characters"),
   categoryId: z.string("Please select category"),
+  isActive: z.boolean().optional(),
   home_delivery: z.boolean(),
   delivery_charge: z.number().optional(),
   handling_charge: z.number().optional(),

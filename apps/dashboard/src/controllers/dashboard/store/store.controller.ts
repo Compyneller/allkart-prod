@@ -17,7 +17,6 @@ export const getStoreController = async (
 ) => {
   const userId = req.headers["x-user-id"];
   const userRole = req.headers["x-user-role"];
-
   if (!userId) {
     throw new ApiError("Forbidden Access", { status: 403 });
   }
@@ -47,6 +46,7 @@ export const createStoreController = async (req: Request, res: Response) => {
   const userEmail = req.headers["x-user-email"];
 
   const body = req.body;
+
 
   if (!userId) {
     throw new ApiError("Forbidden Access", { status: 403 });
@@ -96,6 +96,9 @@ export const updateStoreController = async (req: Request, res: Response) => {
   }
   const body: StoreTypes = req.body;
 
+
+
+
   try {
     const status = await updateStoreService({ body, storeId, userId });
 
@@ -103,11 +106,11 @@ export const updateStoreController = async (req: Request, res: Response) => {
       message: "Done",
       success: true,
     });
-  } catch (error: any) {
-    res.status(500).json({
-      message: error.message,
-      success: false,
-    });
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new ApiError(error.message, { status: 500 });
+    }
+    throw error;
   }
 };
 
@@ -132,10 +135,10 @@ export const deleteStoreController = async (req: Request, res: Response) => {
       success: true,
       data: status,
     });
-  } catch (error: any) {
-    res.status(500).json({
-      message: error.message,
-      success: false,
-    });
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new ApiError(error.message, { status: 500 });
+    }
+    throw error;
   }
 };

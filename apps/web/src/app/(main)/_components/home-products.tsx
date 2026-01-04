@@ -25,7 +25,7 @@ const HomeProducts = () => {
           {cat?.products?.length! > 0 && (
             <div className="mb-5 space-y-2">
               <div className="flex items-center justify-between">
-                <h5 className="text-2xl font-semibold">{cat.name}</h5>
+                <h5 className="text-xl font-semibold">{cat.name}</h5>
                 <Link
                   href={`/cat/${cat?.id}`}
                   className="text-primary font-semibold">

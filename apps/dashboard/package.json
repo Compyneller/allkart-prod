@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
-   "scripts": {
+  "scripts": {
     "start": "bun ./src/index.ts",
     "dev": "bun --watch ./src/index.ts"
   },
@@ -16,7 +16,9 @@
     "@repo/db": "workspace:*",
     "@repo/express-middleware": "workspace:*",
     "@repo/kafka": "workspace:*",
+    "@repo/redis-client": "workspace:*",
     "@repo/schema": "workspace:*",
+    "all": "^0.0.0",
     "axios": "^1.13.2",
     "better-auth": "^1.4.3",
     "cloudinary": "^2.8.0",

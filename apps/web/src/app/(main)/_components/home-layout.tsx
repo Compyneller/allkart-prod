@@ -6,10 +6,12 @@ import { useCoordinates } from "hooks/useCoordinates";
 import CategoryListing from "./cat-listing";
 import HomeProducts from "./home-products";
 import { TopCarousel } from "@/components/Home/top-carousel";
+import NearByStores from "./near-by-stores";
 
 const HomeLayout = () => {
   const { location: coordinates, error, isLoading: LocationLoading } = useCoordinates()
   const { data, isLoading, error: storeError } = fetchStores({ latitude: coordinates?.lat!, longitude: coordinates?.lng! })
+
 
 
   if (LocationLoading) {
@@ -105,12 +107,12 @@ const HomeLayout = () => {
 
 
 
-  console.log("-----------------stores-----------------------", data);
 
   return (
     <Container>
-      <TopCarousel />
+      {/* <TopCarousel /> */}
       <CategoryListing />
+      <NearByStores data={data} />
       <HomeProducts />
     </Container>
   );

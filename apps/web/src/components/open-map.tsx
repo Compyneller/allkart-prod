@@ -1,9 +1,8 @@
-import React from "react";
+import { Navigation } from "lucide-react";
 import { Button } from "./ui/button";
-import { LocateIcon } from "lucide-react";
 
-const OpenMap = () => {
-  const handleOpenMap = (lat: number, lng: number) => {
+const OpenMap = ({ lat, lng }: { lat: number; lng: number }) => {
+  const handleOpenMap = () => {
     // This opens the map with directions from the user's current location
     // to the specific coordinates.
     const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
@@ -16,10 +15,12 @@ const OpenMap = () => {
 
   return (
     <Button
-      onClick={() => handleOpenMap(26.7606, 83.3732)}
+      onClick={() => handleOpenMap()}
       size="sm"
+      className="w-full"
       variant="outline">
-      <LocateIcon /> Get Direction
+      <Navigation size={16} />
+      Direction
     </Button>
   );
 };

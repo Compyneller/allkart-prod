@@ -27,37 +27,28 @@ import UpdateStore from "./update-store";
 import OpenMap from "@/components/open-map";
 
 const StoreCard = ({ data }: { data: StoreTypes }) => {
+
   return (
     <Card
       className={cn(
         data.isActive &&
-          "bg-gradient-to-b from-0% border-t-accent from-accent to-50%"
+        "bg-linear-to-b from-0% border-t-accent from-accent to-50%"
       )}>
       <CardHeader>
         <CardTitle className="text-xl capitalize">{data?.shop_name}</CardTitle>
         <CardAction>
           <div className="flex items-center gap-1.5">
-            {data.isActive ? (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Store Open</p>
-                </TooltipContent>
-              </Tooltip>
-            ) : (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Store Close</p>
-                </TooltipContent>
-              </Tooltip>
-            )}
-
-            <StoreStatus data={data} />
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="flex items-center gap-1.5">
+                  <div className={cn("w-2 h-2 rounded-full animate-pulse", data.isActive ? "bg-green-500" : "bg-red-500")} />
+                  <StoreStatus data={data} />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{data.isActive ? "Store Active" : "Store Close"}</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </CardAction>
       </CardHeader>
@@ -90,7 +81,7 @@ const StoreCard = ({ data }: { data: StoreTypes }) => {
             {data.address && <DetailDialog data={data.address} />}
 
             <DeleteStore id={data.id} />
-            <OpenMap />
+            <OpenMap lat={data.address?.lat!} lng={data.address?.long!} />
           </div>
         </div>
       </CardFooter>

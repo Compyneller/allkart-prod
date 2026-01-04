@@ -2,8 +2,15 @@ import api from "@/lib/axios-instance";
 import { StoreTypes } from "@repo/types";
 import { useQuery } from "@tanstack/react-query";
 
+
+export interface StoreWithAddress extends Omit<StoreTypes, 'address'> {
+    address: string;
+    lat: number;
+    long: number;
+    distance: number;
+}
 export const fetchStores = ({ latitude, longitude }: { latitude: number; longitude: number }): {
-    data: StoreTypes[];
+    data: StoreWithAddress[];
     isLoading: boolean;
     error: any;
 } => {
@@ -16,7 +23,7 @@ export const fetchStores = ({ latitude, longitude }: { latitude: number; longitu
         // enabled: !!latitude && !!longitude,
         retry: 1,
         queryFn: fetchStoreData,
-        staleTime: Infinity,
+        // staleTime: Infinity,
         enabled: !!latitude && !!longitude,
 
     });

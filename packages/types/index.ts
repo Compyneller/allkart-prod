@@ -10,7 +10,7 @@ export interface StoreTypes {
   delivery_charge?: number;
   free_delivery_after?: number;
   isActive?: boolean;
-  address: StoreAddressTypes | null;
+  address?: StoreAddressTypes | null;
   razorpayAccountId?: string;
   ownerId: string;
   createdAt?: Date;
