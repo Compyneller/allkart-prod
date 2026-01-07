@@ -5,7 +5,6 @@ import { fetchStores } from "data/fetchStores";
 import { useCoordinates } from "hooks/useCoordinates";
 import CategoryListing from "./cat-listing";
 import HomeProducts from "./home-products";
-import { TopCarousel } from "@/components/Home/top-carousel";
 import NearByStores from "./near-by-stores";
 
 const HomeLayout = () => {

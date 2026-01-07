@@ -33,8 +33,8 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage, // Use the custom storage
-  whitelist: ["store", "product", "image", "productDetail", "storeCreation"], // Persist only the auth slice
-  // blacklist: [],
+  whitelist: ["store", "product", "image", "productDetail"], // Persist only the auth slice
+  blacklist: ["storeCreation"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

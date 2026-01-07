@@ -53,7 +53,7 @@ const StoreCard = ({ store }: { store: StoreWithAddress }) => {
                 <div>
                     {/* Header: Icon, Name, Address */}
                     <div className="flex items-start gap-4 mb-5">
-                        <div className="w-14 h-14 rounded-xl bg-accent flex items-center justify-center text-primary shrink-0 border border-border shadow-sm">
+                        <div className="w-14 h-14 rounded-xl bg-primary/10 border-primary/20  flex items-center justify-center text-primary shrink-0 border shadow-sm">
                             <Truck size={28} strokeWidth={1.5} />
                         </div>
 
@@ -135,8 +135,8 @@ const StoreCard = ({ store }: { store: StoreWithAddress }) => {
 
                 {/* Action Buttons */}
                 <div className="grid grid-cols-2 gap-3 mt-auto">
-                    <OpenMap lat={store.lat!} lng={store.long!} />
-                    <Link href={`/store/${store.id}`} >
+                    <OpenMap lat={store?.lat!} lng={store?.long!} />
+                    <Link href={`/store/${store?.id}`} >
                         <Button size="sm" className="w-full ">
                             <Eye /> View Products
                         </Button>

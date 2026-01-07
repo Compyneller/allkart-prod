@@ -1,5 +1,5 @@
 'use client'
-import { SearchIcon } from "lucide-react";
+import { HeartIcon, SearchIcon } from "lucide-react";
 import { useEffect, useId } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import { Cart } from "./cart/cart";
 import { ModeToggle } from "./toggle";
 import User from "./user/user";
 import { Spinner } from "./ui/spinner";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const navigationLinks = [
   {
@@ -164,7 +165,9 @@ export default function Navbar() {
         <div className="flex items-center gap-2 max-md:hidden">
           <ModeToggle />
           <User />
+
           <Cart />
+
         </div>
       </div>
     </header>

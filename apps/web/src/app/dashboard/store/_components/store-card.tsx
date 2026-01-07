@@ -1,4 +1,5 @@
 "use client";
+import OpenMap from "@/components/open-map";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,7 +25,6 @@ import DeliveryStatus from "./delivery-status";
 import DetailDialog from "./detail";
 import StoreStatus from "./store-status";
 import UpdateStore from "./update-store";
-import OpenMap from "@/components/open-map";
 
 const StoreCard = ({ data }: { data: StoreTypes }) => {
 
@@ -65,10 +65,10 @@ const StoreCard = ({ data }: { data: StoreTypes }) => {
       <CardFooter>
         <div className="w-full space-y-2">
           <CardDescription className="flex items-center justify-between w-full">
-            Home Delivery:{" "}
-            <CardAction>
+            Home Delivery: {data?.home_delivery ? "Yes" : "No"}
+            {/* <CardAction>
               <DeliveryStatus data={data} />
-            </CardAction>
+            </CardAction> */}
           </CardDescription>
           <div className="grid gap-1.5 grid-cols-2 w-full">
             <UpdateStore data={data} />

@@ -9,11 +9,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import api from "@/lib/axios-instance";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { storeDetailsSchema, StoreSchemaTypes } from "@repo/schema";
+import { storeDetailsSchema, storeUpdateSchema } from "@repo/schema";
+import { StoreTypes } from "@repo/types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Store } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { useAppDispatch, useAppSelector } from "store/hook";
 import { nextStep, setStoreDetails } from "store/slices/storeCreationSlice";
 import z from "zod";
@@ -21,37 +25,69 @@ import Categories from "../../category";
 import { Button } from "../../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 import { Separator } from "../../ui/separator";
+import { Spinner } from "@/components/ui/spinner";
 
-const CreateStoreForm = ({ data }: { data?: StoreSchemaTypes }) => {
+const CreateStoreForm = ({ data, setIsOpen }: { data?: StoreTypes, setIsOpen?: any }) => {
   const dispatch = useAppDispatch();
-  const [toggleHomeDelivery, setToggleHomeDelivery] = useState(false);
+  const [toggleHomeDelivery, setToggleHomeDelivery] = useState(data ? data.home_delivery : false);
   const { storeDetails } = useAppSelector((state) => state.storeCreation);
+  const queryClient = useQueryClient();
 
   const form = useForm<z.infer<typeof storeDetailsSchema>>({
     resolver: zodResolver(storeDetailsSchema),
     defaultValues: {
-      shop_name: storeDetails ? storeDetails.shop_name : data?.shop_name || "",
-      categoryId: storeDetails
-        ? storeDetails.categoryId
-        : data?.categoryId || "",
+      shop_name: data ? data.shop_name : storeDetails?.shop_name || "",
+      categoryId: data
+        ? data.categoryId
+        : storeDetails?.categoryId || "",
       home_delivery: storeDetails?.home_delivery
         ? storeDetails.home_delivery
-        : data?.home_delivery || false,
-      delivery_charge: storeDetails
-        ? storeDetails.delivery_charge
-        : data?.delivery_charge || undefined,
-      handling_charge: storeDetails
-        ? storeDetails.handling_charge
-        : data?.handling_charge || undefined,
-      free_delivery_after: storeDetails
-        ? storeDetails.free_delivery_after
-        : data?.free_delivery_after || undefined,
+        : storeDetails?.home_delivery || false,
+      delivery_charge: data
+        ? data.delivery_charge
+        : storeDetails?.delivery_charge || undefined,
+      handling_charge: data
+        ? data.handling_charge
+        : storeDetails?.handling_charge || undefined,
+      free_delivery_after: data
+        ? data.free_delivery_after
+        : storeDetails?.free_delivery_after || undefined,
     },
   });
 
+  const handleSubmitForm = async ({
+    values,
+    id,
+  }: {
+    values: z.infer<typeof storeUpdateSchema>;
+    id: number;
+  }) => {
+    const body = values;
+
+    const { data } = await api.patch(`/api/v1/dashboard/store/${id}`, body);
+    return data;
+  };
+
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: handleSubmitForm,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["store"] });
+      setIsOpen(false)
+      toast.success("Store Updated");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
   function onSubmit(values: z.infer<typeof storeDetailsSchema>) {
-    dispatch(setStoreDetails(values));
-    dispatch(nextStep());
+    if (data) {
+      mutate({ values: values, id: data?.id });
+    } else {
+      dispatch(setStoreDetails(values));
+      dispatch(nextStep());
+    }
+
   }
 
   useEffect(() => {
@@ -196,7 +232,7 @@ const CreateStoreForm = ({ data }: { data?: StoreSchemaTypes }) => {
             )}
 
             <Button type="submit" className="w-full">
-              Next
+              {data && isPending ? <Spinner /> : null} Next
             </Button>
           </form>
         </Form>

@@ -42,7 +42,6 @@ export const getStoreController = async (
 
 export const createStoreController = async (req: Request, res: Response) => {
   const userId = req.headers["x-user-id"] as string;
-  const userRole = req.headers["x-user-role"];
   const userEmail = req.headers["x-user-email"];
 
   const body = req.body;
@@ -52,9 +51,7 @@ export const createStoreController = async (req: Request, res: Response) => {
     throw new ApiError("Forbidden Access", { status: 403 });
   }
 
-  if (userRole === "user") {
-    throw new ApiError("Forbidden Access", { status: 403 });
-  }
+
   try {
     const parsedBody = completeStoreCreationSchema.safeParse(body);
     if (parsedBody.error) {

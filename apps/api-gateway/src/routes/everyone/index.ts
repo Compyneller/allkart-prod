@@ -3,6 +3,7 @@ import Category from './category.route'
 import GetStores from './near-by-stores.route'
 import StoreProducts from './store-products.route'
 import StoreDetail from './store-detail.route'
+
 const router: Router = Router();
 
 router.use(Category);

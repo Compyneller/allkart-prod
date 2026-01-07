@@ -19,10 +19,22 @@ export const useCoordinates = () => {
             setIsLoading(false);
             return;
         }
+        if (sessionStorage.getItem("latitude") && sessionStorage.getItem("longitude")) {
+            setLocation({
+                lat: parseFloat(sessionStorage.getItem("latitude")!),
+                lng: parseFloat(sessionStorage.getItem("longitude")!),
+            });
+            setIsLoading(false);
+            return;
+        }
 
         // Request location
         navigator.geolocation.getCurrentPosition(
             (position) => {
+
+                sessionStorage.setItem("latitude", position.coords.latitude.toString());
+                sessionStorage.setItem("longitude", position.coords.longitude.toString());
+
                 setLocation({
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,

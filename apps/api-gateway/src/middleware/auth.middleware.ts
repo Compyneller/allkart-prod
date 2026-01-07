@@ -8,6 +8,7 @@ declare global {
     interface Request {
       userRole?: string;
       userId?: string;
+      userEmail?: string;
     }
   }
 }
@@ -30,6 +31,8 @@ export const checkAuth = async (
 
     req.userRole = session.user.role!;
     req.userId = session.user.id;
+    req.userEmail = session.user.email!;
+
 
     next();
   } catch (error) {

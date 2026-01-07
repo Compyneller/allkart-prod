@@ -1,18 +1,25 @@
 'use client'
 import Loader from '@/components/loader'
 import ProductCard from '@/components/product/product-card'
+import ProductSkeleton from '@/components/skeletons/product-skeleton'
+import StoreHeroSkeleton from '@/components/skeletons/store-hero-skeleton'
 import StoreHero from '@/components/store-hero'
 import Container from '@/components/ui/container'
 import { fetchAllProductByStoreId } from 'data/fetchAllProductByStoreId'
 import { fetchStoreDetails } from 'data/fetchStoreDetails'
-import { ClipboardList } from 'lucide-react'
-import React from 'react'
 
 const ProductLayout = ({ id }: { id: number }) => {
   const { data, isLoading } = fetchAllProductByStoreId(id)
   const { data: storedata, isLoading: StoreLoading } = fetchStoreDetails(id)
 
-  if (isLoading) return <Loader />
+  if (isLoading && StoreLoading) {
+    return (
+      <div>
+        <StoreHeroSkeleton />
+        <ProductSkeleton />
+      </div>
+    )
+  }
 
 
   return (

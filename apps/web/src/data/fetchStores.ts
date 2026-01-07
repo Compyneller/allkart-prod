@@ -20,12 +20,9 @@ export const fetchStores = ({ latitude, longitude }: { latitude: number; longitu
     };
     const { data, error, isLoading } = useQuery({
         queryKey: ["nearby-stores", latitude, longitude],
-        // enabled: !!latitude && !!longitude,
         retry: 1,
         queryFn: fetchStoreData,
-        // staleTime: Infinity,
-        enabled: !!latitude && !!longitude,
-
+        staleTime: 1000 * 60 * 5,
     });
 
     return { data, isLoading, error };

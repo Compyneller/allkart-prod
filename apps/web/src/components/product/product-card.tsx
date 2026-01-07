@@ -19,7 +19,7 @@ const ProductCard = ({
   product: ProductType;
 }) => {
   return (
-    <div className="w-full rounded-lg prod-card">
+    <div className="w-full group rounded-lg prod-card relative">
       <Link
         className="flex flex-col justify-center mb-3 gap-2"
         href={`/product/${product.id}/variant/${data?.id}`}

@@ -1,13 +1,12 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { StoreTypes } from "@repo/types";
 import { storeData } from "data/store";
+import { Plus } from "lucide-react";
+import Link from "next/link";
 import { toast } from "sonner";
 import { NoStore } from "./no-store";
 import StoreCard from "./store-card";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 
 const StoreLayout = () => {
   const { data, isLoading, error } = storeData();
@@ -44,7 +43,7 @@ const StoreLayout = () => {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1.5">
-          {data?.map((item: StoreTypes) => (
+          {data?.map((item) => (
             <StoreCard data={item} key={item.id} />
           ))}
         </div>

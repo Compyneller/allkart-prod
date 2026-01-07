@@ -1,10 +1,11 @@
 import { prisma } from "@repo/db";
 import { ApiError } from "@repo/express-middleware";
 import { CompleteStoreCreationType, storeUpdateSchema } from "@repo/schema";
-import { ProductType, StoreTypes } from "@repo/types";
+import { StoreTypes } from "@repo/types";
 import z from "zod";
 import { deleteAllImagesService } from "../../delete-image.service";
 import { createRazorpayAccountService } from "../../payment/create-razorpay-account.service";
+import { userdb } from "@repo/auth-db";
 
 export const createStoreService = async ({
   body,
@@ -52,10 +53,8 @@ export const createStoreService = async ({
           userId: userId,
         },
       });
-
       return { storeData, sellerDoc, bankDetails };
     });
-
     // if (response) {
     //   const rzres = await createRazorpayAccountService({
     //     userEmail: userEmail,
@@ -65,6 +64,24 @@ export const createStoreService = async ({
 
     //   console.log(rzres);
     // }
+    const userExists = await userdb.user.findUnique({
+      where: {
+        id: userId
+      }
+    })
+
+    if (userExists?.role === 'user') {
+      await userdb.user.update({
+        where: {
+          id: userId
+        },
+        data: {
+          role: 'seller'
+        }
+      })
+
+    }
+
 
     return response;
   } catch (error) {

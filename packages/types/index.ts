@@ -2,14 +2,14 @@ import { Prisma } from "@repo/db";
 
 export interface StoreTypes {
   id: number;
-  shop_name: string;
-  categoryId: string;
-  category: CategoryType;
-  home_delivery?: boolean | false;
-  handling_charge?: number;
-  delivery_charge?: number;
-  free_delivery_after?: number;
-  isActive?: boolean;
+  shop_name: string,
+  categoryId: string,
+  category: CategoryType,
+  isActive: boolean,
+  home_delivery: boolean,
+  delivery_charge: number,
+  handling_charge: number,
+  free_delivery_after: number,
   address?: StoreAddressTypes | null;
   razorpayAccountId?: string;
   ownerId: string;

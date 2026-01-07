@@ -12,10 +12,12 @@ import SellerDocuments from "./seller-documents.route";
 import Upload from "./upload/index";
 import User from "./user/index";
 import Payment from './payment/payment.route'
+import Auth from './auth/index'
 const router: Router = Router();
 
 router.use(Everyone);
 router.use(Product);
+router.use(checkAuth, Auth)
 router.use(checkAuth, SellerDocuments);
 router.use(checkAuth, User);
 router.use(checkAuth, ChangeUserRole);
