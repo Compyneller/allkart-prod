@@ -19,7 +19,7 @@ const DeleteAddress = ({ id }: { id: string }) => {
   };
   const { mutate, isPending } = useMutation({
     mutationFn: handleDeleteUser,
-    onSuccess: (responseData) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["user-address"] });
       toast.success("Address Delete Success");
     },

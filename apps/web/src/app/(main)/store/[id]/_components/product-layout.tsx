@@ -1,5 +1,4 @@
 'use client'
-import Loader from '@/components/loader'
 import ProductCard from '@/components/product/product-card'
 import ProductSkeleton from '@/components/skeletons/product-skeleton'
 import StoreHeroSkeleton from '@/components/skeletons/store-hero-skeleton'

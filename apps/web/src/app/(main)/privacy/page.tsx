@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Privacy Policy | Bagalkidukaan",
@@ -7,9 +8,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+        <div className="min-h-screen bg-linear-to-br from-background via-background to-muted/20">
             {/* Hero Section */}
-            <div className="relative overflow-hidden bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border-b border-border">
+            <div className="relative overflow-hidden bg-linear-to-r from-primary/10 via-accent/10 to-primary/10 border-b border-border">
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30"></div>
                 <div className="container mx-auto px-4 py-16 sm:py-24 relative">
                     <div className="max-w-3xl mx-auto text-center space-y-4">
@@ -21,7 +22,7 @@ export default function PrivacyPolicyPage() {
                                 Your Data, Our Responsibility
                             </span>
                         </div>
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-linear-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
                             Privacy Policy
                         </h1>
                         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -45,7 +46,7 @@ export default function PrivacyPolicyPage() {
                         <p className="text-foreground leading-relaxed">
                             <span className="font-semibold text-primary">Bagalkidukaan</span>{" "}
                             (&quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, &quot;our&quot;) operates the website{" "}
-                            <a href="https://www.bagalkidukaan.store" className="text-primary hover:underline font-medium">https://www.bagalkidukaan.store</a>.
+                            <Link href="/" className="text-primary hover:underline font-medium">https://www.bagalkidukaan.store</Link>.
                         </p>
                         <p className="mt-4 text-foreground leading-relaxed">
                             This Privacy Policy explains how we collect, use, store, and protect user data.
@@ -61,7 +62,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 1 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     1
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Information We Collect</h2>
@@ -82,7 +83,7 @@ export default function PrivacyPolicyPage() {
                                             "Ratings, reviews, and reports"
                                         ].map((item, index) => (
                                             <div key={index} className="flex items-start gap-2 p-3 bg-muted/50 rounded-lg">
-                                                <svg className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg className="w-5 h-5 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
                                                 <span className="text-sm text-foreground/90">{item}</span>
@@ -106,7 +107,7 @@ export default function PrivacyPolicyPage() {
                                             "Usage data and interaction logs"
                                         ].map((item, index) => (
                                             <div key={index} className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg border border-primary/10">
-                                                <svg className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <svg className="w-5 h-5 text-primary mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                                                 </svg>
                                                 <span className="text-foreground/90 text-sm">{item}</span>
@@ -140,7 +141,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 2 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     2
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">How We Use Your Information</h2>
@@ -159,7 +160,7 @@ export default function PrivacyPolicyPage() {
                                         "Improve platform performance and security"
                                     ].map((item, index) => (
                                         <div key={index} className="flex items-start gap-3 p-3 bg-muted/50 rounded-lg hover:bg-muted transition-colors duration-200">
-                                            <svg className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                             </svg>
                                             <span className="text-foreground/90">{item}</span>
@@ -177,7 +178,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 3 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-destructive/30 hover:border-destructive/50 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-destructive/10 text-destructive flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-destructive/10 text-destructive flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     3
                                 </div>
                                 <div>
@@ -202,8 +203,8 @@ export default function PrivacyPolicyPage() {
                                         }
                                     ].map((item, index) => (
                                         <div key={index} className={`p-4 rounded-xl border-l-4 ${item.type === 'danger' ? 'bg-destructive/10 border-destructive' :
-                                                item.type === 'warning' ? 'bg-accent/10 border-accent' :
-                                                    'bg-primary/5 border-primary'
+                                            item.type === 'warning' ? 'bg-accent/10 border-accent' :
+                                                'bg-primary/5 border-primary'
                                             }`}>
                                             <p className={`font-medium ${item.type === 'danger' ? 'text-destructive' : 'text-foreground/90'}`}>
                                                 {item.text}
@@ -220,7 +221,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 4 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     4
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Data Sharing & Disclosure</h2>
@@ -235,7 +236,7 @@ export default function PrivacyPolicyPage() {
                                         "To protect Bagalkidukaan from fraud, abuse, or legal claims"
                                     ].map((item, index) => (
                                         <div key={index} className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border border-border hover:border-primary/30 transition-colors duration-200">
-                                            <svg className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                                             </svg>
                                             <span className="text-foreground/90">{item}</span>
@@ -256,7 +257,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 5 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     5
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Ratings, Reviews & Public Data</h2>
@@ -291,7 +292,7 @@ export default function PrivacyPolicyPage() {
                                         }
                                     ].map((item, index) => (
                                         <div key={index} className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg">
-                                            <div className="flex-shrink-0 text-primary mt-0.5">
+                                            <div className="shrink-0 text-primary mt-0.5">
                                                 {item.icon}
                                             </div>
                                             <span className="text-foreground/90">{item.text}</span>
@@ -307,7 +308,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 6 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     6
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Data Retention</h2>
@@ -320,7 +321,7 @@ export default function PrivacyPolicyPage() {
                                         "After account termination if required for legal, security, or dispute reasons"
                                     ].map((item, index) => (
                                         <li key={index} className="flex items-start gap-3 text-foreground/90">
-                                            <svg className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <svg className="w-5 h-5 text-primary mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                                             </svg>
                                             <span>{item}</span>
@@ -338,7 +339,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 7 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     7
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Data Security</h2>
@@ -365,7 +366,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 8 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     8
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">User Rights</h2>
@@ -379,7 +380,7 @@ export default function PrivacyPolicyPage() {
                                         "Request deletion (subject to legal and business constraints)"
                                     ].map((item, index) => (
                                         <div key={index} className="flex items-start gap-3 p-3 bg-primary/5 rounded-lg">
-                                            <svg className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
                                             <span className="text-foreground/90">{item}</span>
@@ -407,7 +408,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 9 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-destructive/30 hover:border-destructive/50 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-destructive/10 text-destructive flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-destructive/10 text-destructive flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     9
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Seller-Specific Responsibilities</h2>
@@ -421,7 +422,7 @@ export default function PrivacyPolicyPage() {
                                         "Not storing or exploiting customer data outside order fulfillment"
                                     ].map((item, index) => (
                                         <div key={index} className="flex items-start gap-3 p-4 bg-destructive/5 rounded-lg border border-destructive/10">
-                                            <svg className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <svg className="w-5 h-5 text-destructive mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                                             </svg>
                                             <span className="text-foreground/90">{item}</span>
@@ -437,7 +438,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 10 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     10
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Cookies & Tracking</h2>
@@ -467,7 +468,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 11 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     11
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Third-Party Links</h2>
@@ -487,7 +488,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 12 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     12
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Policy Updates</h2>
@@ -504,7 +505,7 @@ export default function PrivacyPolicyPage() {
                         {/* Section 13 */}
                         <section className="group p-6 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     13
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Governing Law</h2>
@@ -518,9 +519,9 @@ export default function PrivacyPolicyPage() {
                         </section>
 
                         {/* Section 14 - Contact */}
-                        <section className="group p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
+                        <section className="group p-6 sm:p-8 rounded-2xl bg-linear-to-br from-primary/10 via-primary/5 to-accent/10 border border-primary/30 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
                             <div className="flex items-start gap-3 mb-4">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                                <div className="shrink-0 w-10 h-10 rounded-xl bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform duration-300">
                                     14
                                 </div>
                                 <h2 className="text-2xl font-bold text-foreground mt-1">Contact Information</h2>
@@ -529,13 +530,13 @@ export default function PrivacyPolicyPage() {
                                 <p className="text-foreground/90 mb-4">For privacy-related concerns:</p>
                                 <div className="p-5 bg-card rounded-xl border border-border shadow-sm">
                                     <div className="flex items-start gap-3">
-                                        <svg className="w-6 h-6 text-primary mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-6 h-6 text-primary mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>
                                         <div>
                                             <p className="text-sm text-muted-foreground mb-1">Email us at:</p>
-                                            <a href="mailto:privacy@bagalkidukaan.store" className="text-primary font-semibold hover:underline text-lg">
-                                                privacy@bagalkidukaan.store
+                                            <a href="mailto:business@bagalkidukaan.store" className="text-primary font-semibold hover:underline text-lg">
+                                                business@bagalkidukaan.store
                                             </a>
                                         </div>
                                     </div>
@@ -545,7 +546,7 @@ export default function PrivacyPolicyPage() {
                     </div>
 
                     {/* Bottom Notice */}
-                    <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border border-primary/20 text-center">
+                    <div className="mt-12 p-6 rounded-2xl bg-linear-to-r from-primary/10 via-accent/10 to-primary/10 border border-primary/20 text-center">
                         <div className="flex items-center justify-center gap-2 mb-3">
                             <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -570,7 +571,7 @@ export default function PrivacyPolicyPage() {
                             <p className="text-foreground font-medium">Check out our legal documents</p>
                         </div>
                         <div className="flex gap-3">
-                            <a
+                            <Link
                                 href="/terms"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-xl font-semibold hover:bg-secondary/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                             >
@@ -578,8 +579,8 @@ export default function PrivacyPolicyPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                                 Terms & Conditions
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 href="/"
                                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                             >
@@ -587,7 +588,7 @@ export default function PrivacyPolicyPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                                 </svg>
                                 Back to Home
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

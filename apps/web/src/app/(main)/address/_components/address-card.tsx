@@ -1,8 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StoreAddressTypes } from "@repo/types";
-import { Trash } from "lucide-react";
-import React from "react";
 import DeleteAddress from "./delete-address";
 import EditAddress from "./edit-address";
 

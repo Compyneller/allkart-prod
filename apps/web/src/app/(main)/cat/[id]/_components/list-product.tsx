@@ -4,7 +4,7 @@ import { fetchAllProductRelatedToCategory } from "data/fetchAllProductRelatedToC
 import React from "react";
 
 const ListProducts = ({ id }: { id: string }) => {
-  const { data, isLoading, error } = fetchAllProductRelatedToCategory(id);
+  const { data } = fetchAllProductRelatedToCategory(id);
 
   return (
     <div className="grid gap-3 grid-cols-2 md:grid-cols-4 lg:grid-cols-6 ">

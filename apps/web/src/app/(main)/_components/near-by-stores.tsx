@@ -1,12 +1,10 @@
-import { StoreTypes } from '@repo/types'
-import React, { FC } from 'react'
-import HomeStoreCard from './home-store-card'
-import { StoreWithAddress } from 'data/fetchStores'
-import { Banknote, Eye, MapPin, Navigation, Truck } from 'lucide-react'
+import OpenMap from '@/components/open-map'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { StoreWithAddress } from 'data/fetchStores'
+import { Banknote, Eye, MapPin, Navigation, Truck } from 'lucide-react'
 import Link from 'next/link'
-import OpenMap from '@/components/open-map'
+import { FC } from 'react'
 
 
 const NearByStores: FC<{ data: StoreWithAddress[] }> = ({ data }) => {

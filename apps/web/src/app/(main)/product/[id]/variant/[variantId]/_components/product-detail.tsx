@@ -14,7 +14,7 @@ const ProductDetail = ({
   id: number;
   variantId: string;
 }) => {
-  const { data, isLoading, error } = productDetailData(id, variantId);
+  const { data, isLoading } = productDetailData(id, variantId);
 
   if (isLoading) {
     return <Spinner />;
@@ -87,7 +87,7 @@ const ProductDetail = ({
 
               </div>
             </div>
-            <AddToCart stock={data?.stock} productId={data?.Product?.id} variantId={data?.id} />
+            <AddToCart stock={data?.stock} productId={data?.Product?.id} variantId={data?.id} data={data} />
           </div>
 
           <div className="mt-5">

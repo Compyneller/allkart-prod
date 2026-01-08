@@ -30,7 +30,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { useAppDispatch, useAppSelector } from "store/hook";
+import { useAppDispatch } from "store/hook";
 import { setIsOpen } from "store/slices/dialogSlice";
 import { reset } from "store/slices/sellerStepsSlice";
 import { clearStore } from "store/slices/storeSlice";
@@ -41,7 +41,6 @@ const UserAddress = ({ storeData }: { storeData?: StoreAddressTypes }) => {
   const { coordinates, address, handleAutomaticAddress, isLoading } =
     useGeolocation();
   const dispatch = useAppDispatch();
-  const router = useRouter();
 
   // FIX 1: Provide robust default values to prevent "Uncontrolled to Controlled" warnings
   const form = useForm<z.infer<typeof addressSchema>>({
@@ -100,22 +99,20 @@ const UserAddress = ({ storeData }: { storeData?: StoreAddressTypes }) => {
   }, [address, coordinates, form]);
 
   const handleSubmitForm = async (values: z.infer<typeof addressSchema>) => {
-    try {
-      if (storeData?.id) {
-        const { data } = await api.patch(
-          "/api/v1/address/" + storeData.id,
-          values
-        );
-        return data;
-      } else {
-        const { data } = await api.post("/api/v1/address", values);
-        // Only reset on successful submission, not inside useEffect
-        form.reset();
-        return data;
-      }
-    } catch (error: any) {
-      throw error; // Let react-query onError handle it
+
+    if (storeData?.id) {
+      const { data } = await api.patch(
+        "/api/v1/address/" + storeData.id,
+        values
+      );
+      return data;
+    } else {
+      const { data } = await api.post("/api/v1/address", values);
+      // Only reset on successful submission, not inside useEffect
+      form.reset();
+      return data;
     }
+
   };
 
   const { mutate, isPending } = useMutation({
@@ -130,8 +127,8 @@ const UserAddress = ({ storeData }: { storeData?: StoreAddressTypes }) => {
     onError: (error: any) => {
       toast.error(
         error?.response?.data?.message ||
-          error.message ||
-          "Something went wrong"
+        error.message ||
+        "Something went wrong"
       );
     },
   });

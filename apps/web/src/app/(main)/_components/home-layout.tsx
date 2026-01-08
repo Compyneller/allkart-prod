@@ -9,7 +9,7 @@ import NearByStores from "./near-by-stores";
 
 const HomeLayout = () => {
   const { location: coordinates, error, isLoading: LocationLoading } = useCoordinates()
-  const { data, isLoading, error: storeError } = fetchStores({ latitude: coordinates?.lat!, longitude: coordinates?.lng! })
+  const { data, isLoading } = fetchStores({ latitude: coordinates?.lat!, longitude: coordinates?.lng! })
 
 
 

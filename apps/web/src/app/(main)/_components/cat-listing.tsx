@@ -4,7 +4,7 @@ import CatCardSkeleton from "@/components/skeletons/cat-card-skeleton";
 import { fetchCategory } from "data/fetchCat";
 
 const CategoryListing = () => {
-  const { data, isLoading, error } = fetchCategory();
+  const { data, isLoading } = fetchCategory();
 
   if (isLoading) {
     return <CatCardSkeleton />;

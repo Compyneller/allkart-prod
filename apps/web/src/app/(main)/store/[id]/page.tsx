@@ -1,4 +1,3 @@
-import Container from "@/components/ui/container";
 import ProductLayout from "./_components/product-layout";
 
 const Products = async ({ params }: { params: Promise<{ id: string }> }) => {
