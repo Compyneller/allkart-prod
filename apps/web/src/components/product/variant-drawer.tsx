@@ -81,6 +81,7 @@ export function VariantDrawer({
                   <AddToCart
                     stock={variant?.stock}
                     size="sm"
+                    data={variant}
                     variantId={variant.id!}
                     productId={pid}
                   />
