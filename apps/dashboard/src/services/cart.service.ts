@@ -1,4 +1,4 @@
-import { prisma } from "@repo/db";
+import { Prisma, prisma } from "@repo/db";
 
 export const getCartService = async (userId: string) => {
 
@@ -31,6 +31,7 @@ export const addToCartService = async ({
   productId: number;
   variantId: string;
 }) => {
+
   const response = await prisma.cart.upsert({
     where: {
       userId_productId_variantId: {
@@ -55,7 +56,23 @@ export const addToCartService = async ({
   return response;
 };
 
-
+export const bulkAddToCartService = async ({
+  userId,
+  body
+}: {
+  userId: string,
+  body: { productId: number, variantId: string, quantity: number }[]
+}) => {
+  await prisma.$executeRaw`
+    INSERT INTO "Cart" ("userId", "productId", "variantId", "quantity")
+    VALUES ${Prisma.join(body.map(item =>
+    Prisma.sql`(${userId}, ${item.productId}, ${item.variantId}, ${item.quantity})`
+  ))}
+    ON CONFLICT ("userId", "productId", "variantId")
+    DO UPDATE SET "quantity" = "Cart"."quantity" + EXCLUDED."quantity"
+  `;
+  return;
+}
 
 
 

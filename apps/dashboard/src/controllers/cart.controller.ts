@@ -1,6 +1,6 @@
 import { ApiError } from "@repo/express-middleware";
 import type { Request, Response } from "express";
-import { addToCartService, decrementCartService, getCartService } from "../services/cart.service";
+import { addToCartService, bulkAddToCartService, decrementCartService, getCartService } from "../services/cart.service";
 
 
 export const AddToCartController = async (req: Request, res: Response) => {
@@ -24,6 +24,30 @@ export const AddToCartController = async (req: Request, res: Response) => {
     throw new ApiError("Failed to add product to cart", { status: 500 });
   }
 };
+
+
+export const BulkAddToCartController = async (req: Request, res: Response) => {
+  const userId = req.headers["x-user-id"] as string;
+  const body = req.body;
+
+  if (!userId) {
+    throw new ApiError("Unauthorized access", { status: 400 });
+  }
+  try {
+    const response = await bulkAddToCartService({ userId, body });
+    res.status(200).json({
+      success: true,
+      data: response,
+      message: "Product added to cart successfully",
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new ApiError(error.message, { status: 500 });
+    }
+    throw new ApiError("Failed to add product to cart", { status: 500 });
+  }
+};
+
 export const DecrementCartController = async (req: Request, res: Response) => {
   const userId = req.headers["x-user-id"] as string;
   const { productId, variantId } = req.body;

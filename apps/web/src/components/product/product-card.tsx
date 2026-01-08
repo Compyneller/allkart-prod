@@ -61,6 +61,7 @@ const ProductCard = ({
           size="sm"
           variantId={data.id!}
           productId={pid}
+          data={data}
         />
       )}
     </div>

@@ -1,5 +1,5 @@
 'use client'
-import { HeartIcon, SearchIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { useEffect, useId } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -19,9 +19,8 @@ import useGeolocation from "hooks/useGeolocation";
 import Link from "next/link";
 import { Cart } from "./cart/cart";
 import { ModeToggle } from "./toggle";
-import User from "./user/user";
 import { Spinner } from "./ui/spinner";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import User from "./user/user";
 
 const navigationLinks = [
   {
@@ -38,7 +37,6 @@ export default function Navbar() {
     handleAutomaticAddress()
   }, [])
 
-  console.log(address);
 
   return (
     <header className="border-b sticky bg-background top-0 z-10  px-4 md:px-6">

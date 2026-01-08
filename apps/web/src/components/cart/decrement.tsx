@@ -1,24 +1,16 @@
-import React from 'react'
-import { Button } from '../ui/button'
-import { Minus } from 'lucide-react'
+import { handleDecrementCart } from '@/lib/cart-utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '@/lib/axios-instance';
+import { Minus } from 'lucide-react';
 import { toast } from 'sonner';
+import { Button } from '../ui/button';
 
 const Decrement = ({ productId, variantId }: { productId: number, variantId: string }) => {
     const queryClient = useQueryClient();
-    const handleAddToCart = async () => {
 
-        const { data } = await api.post("/api/v1/decrement-cart", {
-            productId,
-            variantId,
-        });
 
-        return data;
-    };
 
     const { mutate, isPending } = useMutation({
-        mutationFn: handleAddToCart,
+        mutationFn: handleDecrementCart,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["cart"] });
             toast.success("Product removed from cart");
@@ -28,11 +20,11 @@ const Decrement = ({ productId, variantId }: { productId: number, variantId: str
         },
     });
 
-    const handleDecrementCart = async () => {
-        mutate();
+    const handleClick = async () => {
+        mutate({ productId, variantId });
     };
     return (
-        <Button disabled={isPending} size={"icon-sm"} onClick={handleDecrementCart} >
+        <Button disabled={isPending} size={"icon-sm"} onClick={handleClick} >
             <Minus />
         </Button>
     )

@@ -2,44 +2,81 @@
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
+  SheetTrigger
 } from "@/components/ui/sheet";
+import api from "@/lib/axios-instance";
+import { CartProductType } from "@repo/types";
 import { fetchCart } from "data/fetchCart";
+import { useUserSession } from "hooks/useUserSession";
 import { List, ShoppingBag } from "lucide-react";
-import { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "store/hook";
+import { setIsOpen } from "store/slices/dialogSlice";
 import { Spinner } from "../ui/spinner";
 import CartCard from "./cart-card";
-import { setIsOpen } from "store/slices/dialogSlice";
-import api from "@/lib/axios-instance";
+import { useEffect } from "react";
+import { clearCart } from "store/slices/cartSlice";
+
+
 
 export function Cart() {
-  const { data, isLoading } = fetchCart();
+  const { user } = useUserSession();
+  const guestCartData = useAppSelector((state) => state.guestCart);
+  const dispatch = useAppDispatch()
+  const simplifiedCart = guestCartData.map(item => ({
+    productId: item.productId,
+    variantId: item.variantId,
+    quantity: item.quantity
+  }));
+  useEffect(() => {
+    const handleBulkCart = async () => {
+      console.log(simplifiedCart, '-----------------------------------lund-----------------------');
+      if (user) {
+        if (simplifiedCart) {
+          const { data } = await api.post("/api/v1/bulk-cart", simplifiedCart)
+          dispatch(clearCart())
+        }
+      }
+    }
+    handleBulkCart()
+  }, [user])
+
+
+
+  const { data: serverCartData, isLoading: serverLoading } = fetchCart();
+
+  // Get guest cart from Redux state
+
+  const cartData: CartProductType[] = user ? (serverCartData || []) : guestCartData;
+  const isLoading = user ? serverLoading : false;
 
   const { isOpen } = useAppSelector((state) => state.dialog);
-  const dispatch = useAppDispatch();
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  const cartLength = data?.reduce((acc, item) => acc + item.quantity, 0);
-  const totalPrice: number = data?.reduce(
+  const cartLength = cartData?.reduce((acc, item) => acc + item.quantity, 0) || 0;
+  const totalPrice: number = cartData?.reduce(
     (acc, item) =>
       acc + Number(item?.variant?.selling_price) * Number(item?.quantity),
     0,
-  );
-  const savedPrice: number = data?.reduce(
+  ) || 0;
+  const savedPrice: number = cartData?.reduce(
     (acc, item) => acc + Number(item?.variant?.mrp) * Number(item?.quantity),
     0,
-  );
+  ) || 0;
 
   const handleCheckout = async () => {
+    if (!user) {
+      // Redirect to login or show login modal for guest users
+      alert("Please login to proceed with checkout");
+      return;
+    }
+
     const { data } = await api.get("/api/v1/dasboard/checkout");
     console.log(data);
   };
@@ -64,7 +101,7 @@ export function Cart() {
           <SheetTitle>Cart ({cartLength})</SheetTitle>
         </SheetHeader>
         <div className="space-y-1 px-4">
-          {data?.map((item, index) => (
+          {cartData?.map((item, index) => (
             <CartCard data={item} key={index} />
           ))}
         </div>
@@ -87,7 +124,7 @@ export function Cart() {
           </div>
 
           <Button type="submit" onClick={handleCheckout}>
-            Checkout
+            {user ? "Checkout" : "Login to Checkout"}
           </Button>
         </SheetFooter>
       </SheetContent>

@@ -17,6 +17,7 @@ const router: Router = Router();
 
 router.use(Everyone);
 router.use(Product);
+router.use(checkAuth, Cart);
 router.use(checkAuth, Auth)
 router.use(checkAuth, SellerDocuments);
 router.use(checkAuth, User);
@@ -24,7 +25,6 @@ router.use(checkAuth, ChangeUserRole);
 router.use(checkAuth, Payment);
 router.use("/dashboard", checkSeller, Dashboard);
 router.use(checkSeller, Upload);
-router.use(checkSeller, Cart);
 router.use(checkAdmin, Admin);
 // router.use(checkAdmin, Auth);
 

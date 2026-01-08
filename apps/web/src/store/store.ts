@@ -18,6 +18,7 @@ import imageReducer from "./slices/imagesSlice";
 import productDetailReducer from "./slices/productDetailSlice";
 import variantReducer from "./slices/variantSlice";
 import storeCreationReducer from './slices/storeCreationSlice'
+import guestCartReducer from './slices/cartSlice'
 
 const rootReducer = combineReducers({
   store: storeReducer,
@@ -27,13 +28,14 @@ const rootReducer = combineReducers({
   image: imageReducer,
   productDetail: productDetailReducer,
   variant: variantReducer,
+  guestCart: guestCartReducer,
   storeCreation: storeCreationReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage, // Use the custom storage
-  whitelist: ["store", "product", "image", "productDetail"], // Persist only the auth slice
+  whitelist: ["store", "product", "image", "productDetail", "guestCart"], // Persist only the auth slice
   blacklist: ["storeCreation"],
 };
 

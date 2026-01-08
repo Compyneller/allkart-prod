@@ -8,6 +8,7 @@ const CartCard = ({ data }: { data: CartProductType }) => {
   const { isOpen } = useAppSelector((state) => state.dialog)
   const dispatch = useAppDispatch()
 
+
   return (
     <div className=" p-2 rounded-lg border grid gap-3   grid-cols-8" >
       <div className="col-span-6" onClick={() => dispatch(setIsOpen(!isOpen))}>
@@ -43,7 +44,7 @@ const CartCard = ({ data }: { data: CartProductType }) => {
         </Link>
       </div>
       <div className="col-span-2 flex items-center justify-center">
-        <Quantity count={data?.quantity} cardData={data?.variant} />
+        <Quantity count={data?.quantity} productId={data?.productId} variantId={data?.variantId} stock={data?.variant?.stock} />
       </div>
     </div>
   );
