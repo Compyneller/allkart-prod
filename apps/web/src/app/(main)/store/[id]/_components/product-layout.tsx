@@ -27,13 +27,13 @@ const ProductLayout = ({ id }: { id: number }) => {
       {data?.length === 0 ? <div className='border border-primary bg-primary/10 p-5 rounded-md text-center mt-5 w-fit mx-auto font-semibold text-primary'>No products found</div> : <Container>
 
         <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3'>
-          {data?.map((product) => (
+          {data?.map((prod) => (
             <ProductCard
-              pid={product?.id}
-              title={product?.title}
-              data={product?.variants[0]!}
-              product={product}
-              key={product.id}
+              pid={prod?.id}
+              title={prod?.title}
+              key={prod?.id}
+              count={prod?._count?.variants!}
+              data={prod?.variants[0]!}
             />
           ))}
         </div>
