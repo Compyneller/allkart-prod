@@ -35,8 +35,18 @@ export const createStoreService = async ({
               name: true,
             },
           },
+          address: true,
         },
       });
+
+      // Populate the PostGIS coordinates field using lat and long
+      if (storeData.address) {
+        await tsx.$executeRaw`
+          UPDATE "address"
+          SET coordinates = ST_SetSRID(ST_MakePoint(${storeData.address.long}, ${storeData.address.lat}), 4326)::geography
+          WHERE id = ${storeData.address.id}
+        `;
+      }
 
       const sellerDoc = await tsx.sellerDocuments.create({
         data: {

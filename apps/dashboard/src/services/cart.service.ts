@@ -64,12 +64,14 @@ export const bulkAddToCartService = async ({
   body: { productId: number, variantId: string, quantity: number }[]
 }) => {
   await prisma.$executeRaw`
-    INSERT INTO "Cart" ("userId", "productId", "variantId", "quantity")
+    INSERT INTO "cart" ("id", "userId", "productId", "variantId", "quantity", "createdAt", "updatedAt")
     VALUES ${Prisma.join(body.map(item =>
-    Prisma.sql`(${userId}, ${item.productId}, ${item.variantId}, ${item.quantity})`
+    Prisma.sql`(gen_random_uuid(), ${userId}, ${item.productId}, ${item.variantId}, ${item.quantity}, NOW(), NOW())`
   ))}
     ON CONFLICT ("userId", "productId", "variantId")
-    DO UPDATE SET "quantity" = "Cart"."quantity" + EXCLUDED."quantity"
+    DO UPDATE SET 
+      "quantity" = "cart"."quantity" + EXCLUDED."quantity",
+      "updatedAt" = NOW()
   `;
   return;
 }

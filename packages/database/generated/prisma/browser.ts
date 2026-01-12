@@ -58,11 +58,6 @@ export type ProductImage = Prisma.ProductImageModel
  */
 export type Cart = Prisma.CartModel
 /**
- * Model WishList
- * 
- */
-export type WishList = Prisma.WishListModel
-/**
  * Model Category
  * 
  */

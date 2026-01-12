@@ -33,9 +33,8 @@ export function Cart() {
   }));
   useEffect(() => {
     const handleBulkCart = async () => {
-      console.log(simplifiedCart, '-----------------------------------lund-----------------------');
       if (user) {
-        if (simplifiedCart) {
+        if (simplifiedCart.length > 0) {
           const { data } = await api.post("/api/v1/bulk-cart", simplifiedCart)
           dispatch(clearCart())
         }

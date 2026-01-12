@@ -392,7 +392,6 @@ export const ModelName = {
   Variants: 'Variants',
   ProductImage: 'ProductImage',
   Cart: 'Cart',
-  WishList: 'WishList',
   Category: 'Category',
   Order: 'Order',
   OrderItem: 'OrderItem'
@@ -411,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "sellerDocuments" | "bankDetail" | "store" | "address" | "product" | "variants" | "productImage" | "cart" | "wishList" | "category" | "order" | "orderItem"
+    modelProps: "sellerDocuments" | "bankDetail" | "store" | "address" | "product" | "variants" | "productImage" | "cart" | "category" | "order" | "orderItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1007,80 +1006,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    WishList: {
-      payload: Prisma.$WishListPayload<ExtArgs>
-      fields: Prisma.WishListFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.WishListFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.WishListFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload>
-        }
-        findFirst: {
-          args: Prisma.WishListFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.WishListFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload>
-        }
-        findMany: {
-          args: Prisma.WishListFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload>[]
-        }
-        create: {
-          args: Prisma.WishListCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload>
-        }
-        createMany: {
-          args: Prisma.WishListCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.WishListCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload>[]
-        }
-        delete: {
-          args: Prisma.WishListDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload>
-        }
-        update: {
-          args: Prisma.WishListUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload>
-        }
-        deleteMany: {
-          args: Prisma.WishListDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.WishListUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.WishListUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload>[]
-        }
-        upsert: {
-          args: Prisma.WishListUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WishListPayload>
-        }
-        aggregate: {
-          args: Prisma.WishListAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateWishList>
-        }
-        groupBy: {
-          args: Prisma.WishListGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.WishListGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.WishListCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.WishListCountAggregateOutputType> | number
-        }
-      }
-    }
     Category: {
       payload: Prisma.$CategoryPayload<ExtArgs>
       fields: Prisma.CategoryFieldRefs
@@ -1375,13 +1300,13 @@ export const StoreScalarFieldEnum = {
   shop_name: 'shop_name',
   categoryId: 'categoryId',
   home_delivery: 'home_delivery',
-  handling_charge: 'handling_charge',
-  delivery_charge: 'delivery_charge',
-  free_delivery_after: 'free_delivery_after',
   isActive: 'isActive',
   userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  delivery_charge: 'delivery_charge',
+  free_delivery_after: 'free_delivery_after',
+  handling_charge: 'handling_charge',
   razorpayAccountId: 'razorpayAccountId',
   razorpayAccountStatus: 'razorpayAccountStatus'
 } as const
@@ -1397,15 +1322,16 @@ export const AddressScalarFieldEnum = {
   city: 'city',
   state: 'state',
   pincode: 'pincode',
-  lat: 'lat',
-  long: 'long',
-  country: 'country',
-  district: 'district',
   landmark: 'landmark',
   userId: 'userId',
   storeId: 'storeId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  country: 'country',
+  district: 'district',
+  lat: 'lat',
+  long: 'long',
+  geohash: 'geohash'
 } as const
 
 export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
@@ -1468,28 +1394,16 @@ export const CartScalarFieldEnum = {
 export type CartScalarFieldEnum = (typeof CartScalarFieldEnum)[keyof typeof CartScalarFieldEnum]
 
 
-export const WishListScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  productId: 'productId',
-  variantId: 'variantId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type WishListScalarFieldEnum = (typeof WishListScalarFieldEnum)[keyof typeof WishListScalarFieldEnum]
-
-
 export const CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  original_filename: 'original_filename',
-  bytes: 'bytes',
-  url: 'url',
   publicId: 'publicId',
   userId: 'userId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  bytes: 'bytes',
+  original_filename: 'original_filename',
+  url: 'url'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -1728,7 +1642,6 @@ export type GlobalOmitConfig = {
   variants?: Prisma.VariantsOmit
   productImage?: Prisma.ProductImageOmit
   cart?: Prisma.CartOmit
-  wishList?: Prisma.WishListOmit
   category?: Prisma.CategoryOmit
   order?: Prisma.OrderOmit
   orderItem?: Prisma.OrderItemOmit

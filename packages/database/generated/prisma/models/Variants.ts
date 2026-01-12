@@ -268,10 +268,9 @@ export type VariantsWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Variants"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Variants"> | Date | string
   productId?: Prisma.IntFilter<"Variants"> | number
+  carts?: Prisma.CartListRelationFilter
   prod_img?: Prisma.ProductImageListRelationFilter
   Product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
-  carts?: Prisma.CartListRelationFilter
-  wishLists?: Prisma.WishListListRelationFilter
 }
 
 export type VariantsOrderByWithRelationInput = {
@@ -285,10 +284,9 @@ export type VariantsOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   productId?: Prisma.SortOrder
+  carts?: Prisma.CartOrderByRelationAggregateInput
   prod_img?: Prisma.ProductImageOrderByRelationAggregateInput
   Product?: Prisma.ProductOrderByWithRelationInput
-  carts?: Prisma.CartOrderByRelationAggregateInput
-  wishLists?: Prisma.WishListOrderByRelationAggregateInput
 }
 
 export type VariantsWhereUniqueInput = Prisma.AtLeast<{
@@ -305,10 +303,9 @@ export type VariantsWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Variants"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Variants"> | Date | string
   productId?: Prisma.IntFilter<"Variants"> | number
+  carts?: Prisma.CartListRelationFilter
   prod_img?: Prisma.ProductImageListRelationFilter
   Product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
-  carts?: Prisma.CartListRelationFilter
-  wishLists?: Prisma.WishListListRelationFilter
 }, "id">
 
 export type VariantsOrderByWithAggregationInput = {
@@ -355,10 +352,9 @@ export type VariantsCreateInput = {
   unit_value: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  carts?: Prisma.CartCreateNestedManyWithoutVariantInput
   prod_img?: Prisma.ProductImageCreateNestedManyWithoutVariantInput
   Product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  carts?: Prisma.CartCreateNestedManyWithoutVariantInput
-  wishLists?: Prisma.WishListCreateNestedManyWithoutVariantInput
 }
 
 export type VariantsUncheckedCreateInput = {
@@ -372,9 +368,8 @@ export type VariantsUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   productId: number
-  prod_img?: Prisma.ProductImageUncheckedCreateNestedManyWithoutVariantInput
   carts?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
-  wishLists?: Prisma.WishListUncheckedCreateNestedManyWithoutVariantInput
+  prod_img?: Prisma.ProductImageUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type VariantsUpdateInput = {
@@ -387,10 +382,9 @@ export type VariantsUpdateInput = {
   unit_value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  carts?: Prisma.CartUpdateManyWithoutVariantNestedInput
   prod_img?: Prisma.ProductImageUpdateManyWithoutVariantNestedInput
   Product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  carts?: Prisma.CartUpdateManyWithoutVariantNestedInput
-  wishLists?: Prisma.WishListUpdateManyWithoutVariantNestedInput
 }
 
 export type VariantsUncheckedUpdateInput = {
@@ -404,9 +398,8 @@ export type VariantsUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   productId?: Prisma.IntFieldUpdateOperationsInput | number
-  prod_img?: Prisma.ProductImageUncheckedUpdateManyWithoutVariantNestedInput
   carts?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
-  wishLists?: Prisma.WishListUncheckedUpdateManyWithoutVariantNestedInput
+  prod_img?: Prisma.ProductImageUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type VariantsCreateManyInput = {
@@ -593,20 +586,6 @@ export type VariantsUpdateOneRequiredWithoutCartsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VariantsUpdateToOneWithWhereWithoutCartsInput, Prisma.VariantsUpdateWithoutCartsInput>, Prisma.VariantsUncheckedUpdateWithoutCartsInput>
 }
 
-export type VariantsCreateNestedOneWithoutWishListsInput = {
-  create?: Prisma.XOR<Prisma.VariantsCreateWithoutWishListsInput, Prisma.VariantsUncheckedCreateWithoutWishListsInput>
-  connectOrCreate?: Prisma.VariantsCreateOrConnectWithoutWishListsInput
-  connect?: Prisma.VariantsWhereUniqueInput
-}
-
-export type VariantsUpdateOneRequiredWithoutWishListsNestedInput = {
-  create?: Prisma.XOR<Prisma.VariantsCreateWithoutWishListsInput, Prisma.VariantsUncheckedCreateWithoutWishListsInput>
-  connectOrCreate?: Prisma.VariantsCreateOrConnectWithoutWishListsInput
-  upsert?: Prisma.VariantsUpsertWithoutWishListsInput
-  connect?: Prisma.VariantsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.VariantsUpdateToOneWithWhereWithoutWishListsInput, Prisma.VariantsUpdateWithoutWishListsInput>, Prisma.VariantsUncheckedUpdateWithoutWishListsInput>
-}
-
 export type VariantsCreateWithoutProductInput = {
   id?: string
   selling_price: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -617,9 +596,8 @@ export type VariantsCreateWithoutProductInput = {
   unit_value: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  prod_img?: Prisma.ProductImageCreateNestedManyWithoutVariantInput
   carts?: Prisma.CartCreateNestedManyWithoutVariantInput
-  wishLists?: Prisma.WishListCreateNestedManyWithoutVariantInput
+  prod_img?: Prisma.ProductImageCreateNestedManyWithoutVariantInput
 }
 
 export type VariantsUncheckedCreateWithoutProductInput = {
@@ -632,9 +610,8 @@ export type VariantsUncheckedCreateWithoutProductInput = {
   unit_value: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  prod_img?: Prisma.ProductImageUncheckedCreateNestedManyWithoutVariantInput
   carts?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
-  wishLists?: Prisma.WishListUncheckedCreateNestedManyWithoutVariantInput
+  prod_img?: Prisma.ProductImageUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type VariantsCreateOrConnectWithoutProductInput = {
@@ -689,9 +666,8 @@ export type VariantsCreateWithoutProd_imgInput = {
   unit_value: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  Product: Prisma.ProductCreateNestedOneWithoutVariantsInput
   carts?: Prisma.CartCreateNestedManyWithoutVariantInput
-  wishLists?: Prisma.WishListCreateNestedManyWithoutVariantInput
+  Product: Prisma.ProductCreateNestedOneWithoutVariantsInput
 }
 
 export type VariantsUncheckedCreateWithoutProd_imgInput = {
@@ -706,7 +682,6 @@ export type VariantsUncheckedCreateWithoutProd_imgInput = {
   updatedAt?: Date | string
   productId: number
   carts?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
-  wishLists?: Prisma.WishListUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type VariantsCreateOrConnectWithoutProd_imgInput = {
@@ -735,9 +710,8 @@ export type VariantsUpdateWithoutProd_imgInput = {
   unit_value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
   carts?: Prisma.CartUpdateManyWithoutVariantNestedInput
-  wishLists?: Prisma.WishListUpdateManyWithoutVariantNestedInput
+  Product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
 }
 
 export type VariantsUncheckedUpdateWithoutProd_imgInput = {
@@ -752,7 +726,6 @@ export type VariantsUncheckedUpdateWithoutProd_imgInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   productId?: Prisma.IntFieldUpdateOperationsInput | number
   carts?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
-  wishLists?: Prisma.WishListUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type VariantsCreateWithoutCartsInput = {
@@ -767,7 +740,6 @@ export type VariantsCreateWithoutCartsInput = {
   updatedAt?: Date | string
   prod_img?: Prisma.ProductImageCreateNestedManyWithoutVariantInput
   Product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  wishLists?: Prisma.WishListCreateNestedManyWithoutVariantInput
 }
 
 export type VariantsUncheckedCreateWithoutCartsInput = {
@@ -782,7 +754,6 @@ export type VariantsUncheckedCreateWithoutCartsInput = {
   updatedAt?: Date | string
   productId: number
   prod_img?: Prisma.ProductImageUncheckedCreateNestedManyWithoutVariantInput
-  wishLists?: Prisma.WishListUncheckedCreateNestedManyWithoutVariantInput
 }
 
 export type VariantsCreateOrConnectWithoutCartsInput = {
@@ -813,7 +784,6 @@ export type VariantsUpdateWithoutCartsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prod_img?: Prisma.ProductImageUpdateManyWithoutVariantNestedInput
   Product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  wishLists?: Prisma.WishListUpdateManyWithoutVariantNestedInput
 }
 
 export type VariantsUncheckedUpdateWithoutCartsInput = {
@@ -828,83 +798,6 @@ export type VariantsUncheckedUpdateWithoutCartsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   productId?: Prisma.IntFieldUpdateOperationsInput | number
   prod_img?: Prisma.ProductImageUncheckedUpdateManyWithoutVariantNestedInput
-  wishLists?: Prisma.WishListUncheckedUpdateManyWithoutVariantNestedInput
-}
-
-export type VariantsCreateWithoutWishListsInput = {
-  id?: string
-  selling_price: runtime.Decimal | runtime.DecimalJsLike | number | string
-  stock: number
-  sku: string
-  mrp: runtime.Decimal | runtime.DecimalJsLike | number | string
-  unit: string
-  unit_value: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  prod_img?: Prisma.ProductImageCreateNestedManyWithoutVariantInput
-  Product: Prisma.ProductCreateNestedOneWithoutVariantsInput
-  carts?: Prisma.CartCreateNestedManyWithoutVariantInput
-}
-
-export type VariantsUncheckedCreateWithoutWishListsInput = {
-  id?: string
-  selling_price: runtime.Decimal | runtime.DecimalJsLike | number | string
-  stock: number
-  sku: string
-  mrp: runtime.Decimal | runtime.DecimalJsLike | number | string
-  unit: string
-  unit_value: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  productId: number
-  prod_img?: Prisma.ProductImageUncheckedCreateNestedManyWithoutVariantInput
-  carts?: Prisma.CartUncheckedCreateNestedManyWithoutVariantInput
-}
-
-export type VariantsCreateOrConnectWithoutWishListsInput = {
-  where: Prisma.VariantsWhereUniqueInput
-  create: Prisma.XOR<Prisma.VariantsCreateWithoutWishListsInput, Prisma.VariantsUncheckedCreateWithoutWishListsInput>
-}
-
-export type VariantsUpsertWithoutWishListsInput = {
-  update: Prisma.XOR<Prisma.VariantsUpdateWithoutWishListsInput, Prisma.VariantsUncheckedUpdateWithoutWishListsInput>
-  create: Prisma.XOR<Prisma.VariantsCreateWithoutWishListsInput, Prisma.VariantsUncheckedCreateWithoutWishListsInput>
-  where?: Prisma.VariantsWhereInput
-}
-
-export type VariantsUpdateToOneWithWhereWithoutWishListsInput = {
-  where?: Prisma.VariantsWhereInput
-  data: Prisma.XOR<Prisma.VariantsUpdateWithoutWishListsInput, Prisma.VariantsUncheckedUpdateWithoutWishListsInput>
-}
-
-export type VariantsUpdateWithoutWishListsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  selling_price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
-  sku?: Prisma.StringFieldUpdateOperationsInput | string
-  mrp?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  unit?: Prisma.StringFieldUpdateOperationsInput | string
-  unit_value?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prod_img?: Prisma.ProductImageUpdateManyWithoutVariantNestedInput
-  Product?: Prisma.ProductUpdateOneRequiredWithoutVariantsNestedInput
-  carts?: Prisma.CartUpdateManyWithoutVariantNestedInput
-}
-
-export type VariantsUncheckedUpdateWithoutWishListsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  selling_price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
-  sku?: Prisma.StringFieldUpdateOperationsInput | string
-  mrp?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  unit?: Prisma.StringFieldUpdateOperationsInput | string
-  unit_value?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  productId?: Prisma.IntFieldUpdateOperationsInput | number
-  prod_img?: Prisma.ProductImageUncheckedUpdateManyWithoutVariantNestedInput
-  carts?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type VariantsCreateManyProductInput = {
@@ -929,9 +822,8 @@ export type VariantsUpdateWithoutProductInput = {
   unit_value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prod_img?: Prisma.ProductImageUpdateManyWithoutVariantNestedInput
   carts?: Prisma.CartUpdateManyWithoutVariantNestedInput
-  wishLists?: Prisma.WishListUpdateManyWithoutVariantNestedInput
+  prod_img?: Prisma.ProductImageUpdateManyWithoutVariantNestedInput
 }
 
 export type VariantsUncheckedUpdateWithoutProductInput = {
@@ -944,9 +836,8 @@ export type VariantsUncheckedUpdateWithoutProductInput = {
   unit_value?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prod_img?: Prisma.ProductImageUncheckedUpdateManyWithoutVariantNestedInput
   carts?: Prisma.CartUncheckedUpdateManyWithoutVariantNestedInput
-  wishLists?: Prisma.WishListUncheckedUpdateManyWithoutVariantNestedInput
+  prod_img?: Prisma.ProductImageUncheckedUpdateManyWithoutVariantNestedInput
 }
 
 export type VariantsUncheckedUpdateManyWithoutProductInput = {
@@ -967,15 +858,13 @@ export type VariantsUncheckedUpdateManyWithoutProductInput = {
  */
 
 export type VariantsCountOutputType = {
-  prod_img: number
   carts: number
-  wishLists: number
+  prod_img: number
 }
 
 export type VariantsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  prod_img?: boolean | VariantsCountOutputTypeCountProd_imgArgs
   carts?: boolean | VariantsCountOutputTypeCountCartsArgs
-  wishLists?: boolean | VariantsCountOutputTypeCountWishListsArgs
+  prod_img?: boolean | VariantsCountOutputTypeCountProd_imgArgs
 }
 
 /**
@@ -991,13 +880,6 @@ export type VariantsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * VariantsCountOutputType without action
  */
-export type VariantsCountOutputTypeCountProd_imgArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProductImageWhereInput
-}
-
-/**
- * VariantsCountOutputType without action
- */
 export type VariantsCountOutputTypeCountCartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CartWhereInput
 }
@@ -1005,8 +887,8 @@ export type VariantsCountOutputTypeCountCartsArgs<ExtArgs extends runtime.Types.
 /**
  * VariantsCountOutputType without action
  */
-export type VariantsCountOutputTypeCountWishListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WishListWhereInput
+export type VariantsCountOutputTypeCountProd_imgArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProductImageWhereInput
 }
 
 
@@ -1021,10 +903,9 @@ export type VariantsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   productId?: boolean
+  carts?: boolean | Prisma.Variants$cartsArgs<ExtArgs>
   prod_img?: boolean | Prisma.Variants$prod_imgArgs<ExtArgs>
   Product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  carts?: boolean | Prisma.Variants$cartsArgs<ExtArgs>
-  wishLists?: boolean | Prisma.Variants$wishListsArgs<ExtArgs>
   _count?: boolean | Prisma.VariantsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["variants"]>
 
@@ -1071,10 +952,9 @@ export type VariantsSelectScalar = {
 
 export type VariantsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "selling_price" | "stock" | "sku" | "mrp" | "unit" | "unit_value" | "createdAt" | "updatedAt" | "productId", ExtArgs["result"]["variants"]>
 export type VariantsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  carts?: boolean | Prisma.Variants$cartsArgs<ExtArgs>
   prod_img?: boolean | Prisma.Variants$prod_imgArgs<ExtArgs>
   Product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
-  carts?: boolean | Prisma.Variants$cartsArgs<ExtArgs>
-  wishLists?: boolean | Prisma.Variants$wishListsArgs<ExtArgs>
   _count?: boolean | Prisma.VariantsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VariantsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1087,10 +967,9 @@ export type VariantsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $VariantsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Variants"
   objects: {
+    carts: Prisma.$CartPayload<ExtArgs>[]
     prod_img: Prisma.$ProductImagePayload<ExtArgs>[]
     Product: Prisma.$ProductPayload<ExtArgs>
-    carts: Prisma.$CartPayload<ExtArgs>[]
-    wishLists: Prisma.$WishListPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1497,10 +1376,9 @@ readonly fields: VariantsFieldRefs;
  */
 export interface Prisma__VariantsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  carts<T extends Prisma.Variants$cartsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Variants$cartsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   prod_img<T extends Prisma.Variants$prod_imgArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Variants$prod_imgArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Product<T extends Prisma.ProductDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  carts<T extends Prisma.Variants$cartsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Variants$cartsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CartPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  wishLists<T extends Prisma.Variants$wishListsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Variants$wishListsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WishListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1936,30 +1814,6 @@ export type VariantsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Variants.prod_img
- */
-export type Variants$prod_imgArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ProductImage
-   */
-  select?: Prisma.ProductImageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ProductImage
-   */
-  omit?: Prisma.ProductImageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProductImageInclude<ExtArgs> | null
-  where?: Prisma.ProductImageWhereInput
-  orderBy?: Prisma.ProductImageOrderByWithRelationInput | Prisma.ProductImageOrderByWithRelationInput[]
-  cursor?: Prisma.ProductImageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ProductImageScalarFieldEnum | Prisma.ProductImageScalarFieldEnum[]
-}
-
-/**
  * Variants.carts
  */
 export type Variants$cartsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1984,27 +1838,27 @@ export type Variants$cartsArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Variants.wishLists
+ * Variants.prod_img
  */
-export type Variants$wishListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Variants$prod_imgArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the WishList
+   * Select specific fields to fetch from the ProductImage
    */
-  select?: Prisma.WishListSelect<ExtArgs> | null
+  select?: Prisma.ProductImageSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the WishList
+   * Omit specific fields from the ProductImage
    */
-  omit?: Prisma.WishListOmit<ExtArgs> | null
+  omit?: Prisma.ProductImageOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.WishListInclude<ExtArgs> | null
-  where?: Prisma.WishListWhereInput
-  orderBy?: Prisma.WishListOrderByWithRelationInput | Prisma.WishListOrderByWithRelationInput[]
-  cursor?: Prisma.WishListWhereUniqueInput
+  include?: Prisma.ProductImageInclude<ExtArgs> | null
+  where?: Prisma.ProductImageWhereInput
+  orderBy?: Prisma.ProductImageOrderByWithRelationInput | Prisma.ProductImageOrderByWithRelationInput[]
+  cursor?: Prisma.ProductImageWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.WishListScalarFieldEnum | Prisma.WishListScalarFieldEnum[]
+  distinct?: Prisma.ProductImageScalarFieldEnum | Prisma.ProductImageScalarFieldEnum[]
 }
 
 /**

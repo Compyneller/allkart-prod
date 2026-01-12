@@ -72,6 +72,9 @@ export interface ProductType {
   title: string;
   description: string;
   categoryId: string;
+  _count?: {
+    variants: number;
+  };
   category?: {
     id: string;
     name: string;

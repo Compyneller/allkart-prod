@@ -22,13 +22,23 @@ export const saveAddress = async ({
       });
     }
 
-    const data = prisma.address.create({
+    const data = await prisma.address.create({
       data: {
         ...parsedBody.data,
 
         userId: userId,
       },
     });
+
+    // Populate the PostGIS coordinates field using lat and long
+    if (data.lat && data.long) {
+      await prisma.$executeRaw`
+        UPDATE "address"
+        SET coordinates = ST_SetSRID(ST_MakePoint(${data.long}, ${data.lat}), 4326)::geography
+        WHERE id = ${data.id}
+      `;
+    }
+
     return data;
   } catch (error) {
     throw error;
@@ -64,6 +74,15 @@ export const updateAddressService = async ({
         ...parsedBody.data,
       },
     });
+
+    // Update the PostGIS coordinates field if lat or long changed
+    if (data.lat && data.long) {
+      await prisma.$executeRaw`
+        UPDATE "address"
+        SET coordinates = ST_SetSRID(ST_MakePoint(${data.long}, ${data.lat}), 4326)::geography
+        WHERE id = ${data.id}
+      `;
+    }
 
     return data;
   } catch (error) {

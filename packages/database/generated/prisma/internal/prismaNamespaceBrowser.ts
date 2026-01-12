@@ -59,7 +59,6 @@ export const ModelName = {
   Variants: 'Variants',
   ProductImage: 'ProductImage',
   Cart: 'Cart',
-  WishList: 'WishList',
   Category: 'Category',
   Order: 'Order',
   OrderItem: 'OrderItem'
@@ -114,13 +113,13 @@ export const StoreScalarFieldEnum = {
   shop_name: 'shop_name',
   categoryId: 'categoryId',
   home_delivery: 'home_delivery',
-  handling_charge: 'handling_charge',
-  delivery_charge: 'delivery_charge',
-  free_delivery_after: 'free_delivery_after',
   isActive: 'isActive',
   userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  delivery_charge: 'delivery_charge',
+  free_delivery_after: 'free_delivery_after',
+  handling_charge: 'handling_charge',
   razorpayAccountId: 'razorpayAccountId',
   razorpayAccountStatus: 'razorpayAccountStatus'
 } as const
@@ -136,15 +135,16 @@ export const AddressScalarFieldEnum = {
   city: 'city',
   state: 'state',
   pincode: 'pincode',
-  lat: 'lat',
-  long: 'long',
-  country: 'country',
-  district: 'district',
   landmark: 'landmark',
   userId: 'userId',
   storeId: 'storeId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  country: 'country',
+  district: 'district',
+  lat: 'lat',
+  long: 'long',
+  geohash: 'geohash'
 } as const
 
 export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
@@ -207,28 +207,16 @@ export const CartScalarFieldEnum = {
 export type CartScalarFieldEnum = (typeof CartScalarFieldEnum)[keyof typeof CartScalarFieldEnum]
 
 
-export const WishListScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  productId: 'productId',
-  variantId: 'variantId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type WishListScalarFieldEnum = (typeof WishListScalarFieldEnum)[keyof typeof WishListScalarFieldEnum]
-
-
 export const CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  original_filename: 'original_filename',
-  bytes: 'bytes',
-  url: 'url',
   publicId: 'publicId',
   userId: 'userId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  bytes: 'bytes',
+  original_filename: 'original_filename',
+  url: 'url'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]

@@ -8,6 +8,7 @@ import { FC } from 'react'
 
 
 const NearByStores: FC<{ data: StoreWithAddress[] }> = ({ data }) => {
+
     return (
         <div className='mb-10'>
             <h5 className='text-xl mb-3 font-semibold'>Nearby Stores</h5>
@@ -27,9 +28,9 @@ export default NearByStores
 
 const StoreCard = ({ store }: { store: StoreWithAddress }) => {
     // Format distance
-    const distanceText = store.distance < 1
-        ? `${(store.distance * 1000).toFixed(0)}m`
-        : `${store.distance.toFixed(1)} km`;
+    const distanceText = store?.distance < 1
+        ? `${(store?.distance * 1000)?.toFixed(0)}m`
+        : `${store?.distance?.toFixed(1)} km`;
 
     return (
         <Card className="relative group flex flex-col justify-between h-full hover:shadow-lg transition-all duration-300">
@@ -101,7 +102,7 @@ const StoreCard = ({ store }: { store: StoreWithAddress }) => {
                                     <Banknote size={14} />
                                 </div>
                                 <div>
-                                    <span className="text-[10px] font-medium text-muted-foreground block uppercase tracking-wider">Charge</span>
+                                    <span className="text-[10px] font-medium text-muted-foreground block uppercase tracking-wider">Delivery Charge</span>
                                     {
                                         store.home_delivery ? store.delivery_charge === 0 ? (
                                             <span className="text-xs font-bold text-primary">Free</span>
@@ -116,10 +117,10 @@ const StoreCard = ({ store }: { store: StoreWithAddress }) => {
 
                             {store?.delivery_charge! > 0 && (
                                 <div className="text-right">
-                                    <span className="text-[10px] font-medium text-muted-foreground block uppercase tracking-wider">Free After</span>
+                                    <span className="text-[10px] font-medium text-muted-foreground block uppercase tracking-wider">Handling Charge</span>
                                     {
                                         store.home_delivery ? (
-                                            <span className="text-xs font-bold text-primary">₹{store.free_delivery_after}</span>
+                                            <span className="text-xs font-bold text-primary">₹{store.handling_charge}</span>
                                         ) : (
                                             <span className="text-xs font-bold text-muted-foreground">Not Available</span>
                                         )

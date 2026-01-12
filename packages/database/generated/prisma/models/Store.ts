@@ -28,16 +28,16 @@ export type AggregateStore = {
 
 export type StoreAvgAggregateOutputType = {
   id: number | null
-  handling_charge: number | null
   delivery_charge: number | null
   free_delivery_after: number | null
+  handling_charge: number | null
 }
 
 export type StoreSumAggregateOutputType = {
   id: number | null
-  handling_charge: number | null
   delivery_charge: number | null
   free_delivery_after: number | null
+  handling_charge: number | null
 }
 
 export type StoreMinAggregateOutputType = {
@@ -45,13 +45,13 @@ export type StoreMinAggregateOutputType = {
   shop_name: string | null
   categoryId: string | null
   home_delivery: boolean | null
-  handling_charge: number | null
-  delivery_charge: number | null
-  free_delivery_after: number | null
   isActive: boolean | null
   userId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  delivery_charge: number | null
+  free_delivery_after: number | null
+  handling_charge: number | null
   razorpayAccountId: string | null
   razorpayAccountStatus: string | null
 }
@@ -61,13 +61,13 @@ export type StoreMaxAggregateOutputType = {
   shop_name: string | null
   categoryId: string | null
   home_delivery: boolean | null
-  handling_charge: number | null
-  delivery_charge: number | null
-  free_delivery_after: number | null
   isActive: boolean | null
   userId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  delivery_charge: number | null
+  free_delivery_after: number | null
+  handling_charge: number | null
   razorpayAccountId: string | null
   razorpayAccountStatus: string | null
 }
@@ -77,13 +77,13 @@ export type StoreCountAggregateOutputType = {
   shop_name: number
   categoryId: number
   home_delivery: number
-  handling_charge: number
-  delivery_charge: number
-  free_delivery_after: number
   isActive: number
   userId: number
   createdAt: number
   updatedAt: number
+  delivery_charge: number
+  free_delivery_after: number
+  handling_charge: number
   razorpayAccountId: number
   razorpayAccountStatus: number
   _all: number
@@ -92,16 +92,16 @@ export type StoreCountAggregateOutputType = {
 
 export type StoreAvgAggregateInputType = {
   id?: true
-  handling_charge?: true
   delivery_charge?: true
   free_delivery_after?: true
+  handling_charge?: true
 }
 
 export type StoreSumAggregateInputType = {
   id?: true
-  handling_charge?: true
   delivery_charge?: true
   free_delivery_after?: true
+  handling_charge?: true
 }
 
 export type StoreMinAggregateInputType = {
@@ -109,13 +109,13 @@ export type StoreMinAggregateInputType = {
   shop_name?: true
   categoryId?: true
   home_delivery?: true
-  handling_charge?: true
-  delivery_charge?: true
-  free_delivery_after?: true
   isActive?: true
   userId?: true
   createdAt?: true
   updatedAt?: true
+  delivery_charge?: true
+  free_delivery_after?: true
+  handling_charge?: true
   razorpayAccountId?: true
   razorpayAccountStatus?: true
 }
@@ -125,13 +125,13 @@ export type StoreMaxAggregateInputType = {
   shop_name?: true
   categoryId?: true
   home_delivery?: true
-  handling_charge?: true
-  delivery_charge?: true
-  free_delivery_after?: true
   isActive?: true
   userId?: true
   createdAt?: true
   updatedAt?: true
+  delivery_charge?: true
+  free_delivery_after?: true
+  handling_charge?: true
   razorpayAccountId?: true
   razorpayAccountStatus?: true
 }
@@ -141,13 +141,13 @@ export type StoreCountAggregateInputType = {
   shop_name?: true
   categoryId?: true
   home_delivery?: true
-  handling_charge?: true
-  delivery_charge?: true
-  free_delivery_after?: true
   isActive?: true
   userId?: true
   createdAt?: true
   updatedAt?: true
+  delivery_charge?: true
+  free_delivery_after?: true
+  handling_charge?: true
   razorpayAccountId?: true
   razorpayAccountStatus?: true
   _all?: true
@@ -244,13 +244,13 @@ export type StoreGroupByOutputType = {
   shop_name: string
   categoryId: string
   home_delivery: boolean | null
-  handling_charge: number | null
-  delivery_charge: number | null
-  free_delivery_after: number | null
   isActive: boolean | null
   userId: string
   createdAt: Date
   updatedAt: Date
+  delivery_charge: number | null
+  free_delivery_after: number | null
+  handling_charge: number | null
   razorpayAccountId: string | null
   razorpayAccountStatus: string | null
   _count: StoreCountAggregateOutputType | null
@@ -283,20 +283,20 @@ export type StoreWhereInput = {
   shop_name?: Prisma.StringFilter<"Store"> | string
   categoryId?: Prisma.StringFilter<"Store"> | string
   home_delivery?: Prisma.BoolNullableFilter<"Store"> | boolean | null
-  handling_charge?: Prisma.IntNullableFilter<"Store"> | number | null
-  delivery_charge?: Prisma.IntNullableFilter<"Store"> | number | null
-  free_delivery_after?: Prisma.IntNullableFilter<"Store"> | number | null
   isActive?: Prisma.BoolNullableFilter<"Store"> | boolean | null
   userId?: Prisma.StringFilter<"Store"> | string
   createdAt?: Prisma.DateTimeFilter<"Store"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Store"> | Date | string
+  delivery_charge?: Prisma.IntNullableFilter<"Store"> | number | null
+  free_delivery_after?: Prisma.IntNullableFilter<"Store"> | number | null
+  handling_charge?: Prisma.IntNullableFilter<"Store"> | number | null
   razorpayAccountId?: Prisma.StringNullableFilter<"Store"> | string | null
   razorpayAccountStatus?: Prisma.StringNullableFilter<"Store"> | string | null
-  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
-  product?: Prisma.ProductListRelationFilter
   address?: Prisma.XOR<Prisma.AddressNullableScalarRelationFilter, Prisma.AddressWhereInput> | null
-  sellerDocuments?: Prisma.XOR<Prisma.SellerDocumentsNullableScalarRelationFilter, Prisma.SellerDocumentsWhereInput> | null
   bankDetails?: Prisma.XOR<Prisma.BankDetailNullableScalarRelationFilter, Prisma.BankDetailWhereInput> | null
+  product?: Prisma.ProductListRelationFilter
+  sellerDocuments?: Prisma.XOR<Prisma.SellerDocumentsNullableScalarRelationFilter, Prisma.SellerDocumentsWhereInput> | null
+  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
 }
 
 export type StoreOrderByWithRelationInput = {
@@ -304,20 +304,20 @@ export type StoreOrderByWithRelationInput = {
   shop_name?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   home_delivery?: Prisma.SortOrderInput | Prisma.SortOrder
-  handling_charge?: Prisma.SortOrderInput | Prisma.SortOrder
-  delivery_charge?: Prisma.SortOrderInput | Prisma.SortOrder
-  free_delivery_after?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  delivery_charge?: Prisma.SortOrderInput | Prisma.SortOrder
+  free_delivery_after?: Prisma.SortOrderInput | Prisma.SortOrder
+  handling_charge?: Prisma.SortOrderInput | Prisma.SortOrder
   razorpayAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
   razorpayAccountStatus?: Prisma.SortOrderInput | Prisma.SortOrder
-  category?: Prisma.CategoryOrderByWithRelationInput
-  product?: Prisma.ProductOrderByRelationAggregateInput
   address?: Prisma.AddressOrderByWithRelationInput
-  sellerDocuments?: Prisma.SellerDocumentsOrderByWithRelationInput
   bankDetails?: Prisma.BankDetailOrderByWithRelationInput
+  product?: Prisma.ProductOrderByRelationAggregateInput
+  sellerDocuments?: Prisma.SellerDocumentsOrderByWithRelationInput
+  category?: Prisma.CategoryOrderByWithRelationInput
 }
 
 export type StoreWhereUniqueInput = Prisma.AtLeast<{
@@ -329,19 +329,19 @@ export type StoreWhereUniqueInput = Prisma.AtLeast<{
   shop_name?: Prisma.StringFilter<"Store"> | string
   categoryId?: Prisma.StringFilter<"Store"> | string
   home_delivery?: Prisma.BoolNullableFilter<"Store"> | boolean | null
-  handling_charge?: Prisma.IntNullableFilter<"Store"> | number | null
-  delivery_charge?: Prisma.IntNullableFilter<"Store"> | number | null
-  free_delivery_after?: Prisma.IntNullableFilter<"Store"> | number | null
   isActive?: Prisma.BoolNullableFilter<"Store"> | boolean | null
   userId?: Prisma.StringFilter<"Store"> | string
   createdAt?: Prisma.DateTimeFilter<"Store"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Store"> | Date | string
+  delivery_charge?: Prisma.IntNullableFilter<"Store"> | number | null
+  free_delivery_after?: Prisma.IntNullableFilter<"Store"> | number | null
+  handling_charge?: Prisma.IntNullableFilter<"Store"> | number | null
   razorpayAccountStatus?: Prisma.StringNullableFilter<"Store"> | string | null
-  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
-  product?: Prisma.ProductListRelationFilter
   address?: Prisma.XOR<Prisma.AddressNullableScalarRelationFilter, Prisma.AddressWhereInput> | null
-  sellerDocuments?: Prisma.XOR<Prisma.SellerDocumentsNullableScalarRelationFilter, Prisma.SellerDocumentsWhereInput> | null
   bankDetails?: Prisma.XOR<Prisma.BankDetailNullableScalarRelationFilter, Prisma.BankDetailWhereInput> | null
+  product?: Prisma.ProductListRelationFilter
+  sellerDocuments?: Prisma.XOR<Prisma.SellerDocumentsNullableScalarRelationFilter, Prisma.SellerDocumentsWhereInput> | null
+  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
 }, "id" | "razorpayAccountId">
 
 export type StoreOrderByWithAggregationInput = {
@@ -349,13 +349,13 @@ export type StoreOrderByWithAggregationInput = {
   shop_name?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   home_delivery?: Prisma.SortOrderInput | Prisma.SortOrder
-  handling_charge?: Prisma.SortOrderInput | Prisma.SortOrder
-  delivery_charge?: Prisma.SortOrderInput | Prisma.SortOrder
-  free_delivery_after?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  delivery_charge?: Prisma.SortOrderInput | Prisma.SortOrder
+  free_delivery_after?: Prisma.SortOrderInput | Prisma.SortOrder
+  handling_charge?: Prisma.SortOrderInput | Prisma.SortOrder
   razorpayAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
   razorpayAccountStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.StoreCountOrderByAggregateInput
@@ -373,13 +373,13 @@ export type StoreScalarWhereWithAggregatesInput = {
   shop_name?: Prisma.StringWithAggregatesFilter<"Store"> | string
   categoryId?: Prisma.StringWithAggregatesFilter<"Store"> | string
   home_delivery?: Prisma.BoolNullableWithAggregatesFilter<"Store"> | boolean | null
-  handling_charge?: Prisma.IntNullableWithAggregatesFilter<"Store"> | number | null
-  delivery_charge?: Prisma.IntNullableWithAggregatesFilter<"Store"> | number | null
-  free_delivery_after?: Prisma.IntNullableWithAggregatesFilter<"Store"> | number | null
   isActive?: Prisma.BoolNullableWithAggregatesFilter<"Store"> | boolean | null
   userId?: Prisma.StringWithAggregatesFilter<"Store"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Store"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Store"> | Date | string
+  delivery_charge?: Prisma.IntNullableWithAggregatesFilter<"Store"> | number | null
+  free_delivery_after?: Prisma.IntNullableWithAggregatesFilter<"Store"> | number | null
+  handling_charge?: Prisma.IntNullableWithAggregatesFilter<"Store"> | number | null
   razorpayAccountId?: Prisma.StringNullableWithAggregatesFilter<"Store"> | string | null
   razorpayAccountStatus?: Prisma.StringNullableWithAggregatesFilter<"Store"> | string | null
 }
@@ -387,20 +387,20 @@ export type StoreScalarWhereWithAggregatesInput = {
 export type StoreCreateInput = {
   shop_name: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
-  product?: Prisma.ProductCreateNestedManyWithoutStoreInput
   address?: Prisma.AddressCreateNestedOneWithoutStoreInput
-  sellerDocuments?: Prisma.SellerDocumentsCreateNestedOneWithoutStoreInput
   bankDetails?: Prisma.BankDetailCreateNestedOneWithoutStoreInput
+  product?: Prisma.ProductCreateNestedManyWithoutStoreInput
+  sellerDocuments?: Prisma.SellerDocumentsCreateNestedOneWithoutStoreInput
+  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
 }
 
 export type StoreUncheckedCreateInput = {
@@ -408,38 +408,38 @@ export type StoreUncheckedCreateInput = {
   shop_name: string
   categoryId: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  product?: Prisma.ProductUncheckedCreateNestedManyWithoutStoreInput
   address?: Prisma.AddressUncheckedCreateNestedOneWithoutStoreInput
-  sellerDocuments?: Prisma.SellerDocumentsUncheckedCreateNestedOneWithoutStoreInput
   bankDetails?: Prisma.BankDetailUncheckedCreateNestedOneWithoutStoreInput
+  product?: Prisma.ProductUncheckedCreateNestedManyWithoutStoreInput
+  sellerDocuments?: Prisma.SellerDocumentsUncheckedCreateNestedOneWithoutStoreInput
 }
 
 export type StoreUpdateInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
-  product?: Prisma.ProductUpdateManyWithoutStoreNestedInput
   address?: Prisma.AddressUpdateOneWithoutStoreNestedInput
-  sellerDocuments?: Prisma.SellerDocumentsUpdateOneWithoutStoreNestedInput
   bankDetails?: Prisma.BankDetailUpdateOneWithoutStoreNestedInput
+  product?: Prisma.ProductUpdateManyWithoutStoreNestedInput
+  sellerDocuments?: Prisma.SellerDocumentsUpdateOneWithoutStoreNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
 }
 
 export type StoreUncheckedUpdateInput = {
@@ -447,19 +447,19 @@ export type StoreUncheckedUpdateInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  product?: Prisma.ProductUncheckedUpdateManyWithoutStoreNestedInput
   address?: Prisma.AddressUncheckedUpdateOneWithoutStoreNestedInput
-  sellerDocuments?: Prisma.SellerDocumentsUncheckedUpdateOneWithoutStoreNestedInput
   bankDetails?: Prisma.BankDetailUncheckedUpdateOneWithoutStoreNestedInput
+  product?: Prisma.ProductUncheckedUpdateManyWithoutStoreNestedInput
+  sellerDocuments?: Prisma.SellerDocumentsUncheckedUpdateOneWithoutStoreNestedInput
 }
 
 export type StoreCreateManyInput = {
@@ -467,13 +467,13 @@ export type StoreCreateManyInput = {
   shop_name: string
   categoryId: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
 }
@@ -481,13 +481,13 @@ export type StoreCreateManyInput = {
 export type StoreUpdateManyMutationInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -497,13 +497,13 @@ export type StoreUncheckedUpdateManyInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -518,22 +518,22 @@ export type StoreCountOrderByAggregateInput = {
   shop_name?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   home_delivery?: Prisma.SortOrder
-  handling_charge?: Prisma.SortOrder
-  delivery_charge?: Prisma.SortOrder
-  free_delivery_after?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  delivery_charge?: Prisma.SortOrder
+  free_delivery_after?: Prisma.SortOrder
+  handling_charge?: Prisma.SortOrder
   razorpayAccountId?: Prisma.SortOrder
   razorpayAccountStatus?: Prisma.SortOrder
 }
 
 export type StoreAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  handling_charge?: Prisma.SortOrder
   delivery_charge?: Prisma.SortOrder
   free_delivery_after?: Prisma.SortOrder
+  handling_charge?: Prisma.SortOrder
 }
 
 export type StoreMaxOrderByAggregateInput = {
@@ -541,13 +541,13 @@ export type StoreMaxOrderByAggregateInput = {
   shop_name?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   home_delivery?: Prisma.SortOrder
-  handling_charge?: Prisma.SortOrder
-  delivery_charge?: Prisma.SortOrder
-  free_delivery_after?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  delivery_charge?: Prisma.SortOrder
+  free_delivery_after?: Prisma.SortOrder
+  handling_charge?: Prisma.SortOrder
   razorpayAccountId?: Prisma.SortOrder
   razorpayAccountStatus?: Prisma.SortOrder
 }
@@ -557,22 +557,22 @@ export type StoreMinOrderByAggregateInput = {
   shop_name?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   home_delivery?: Prisma.SortOrder
-  handling_charge?: Prisma.SortOrder
-  delivery_charge?: Prisma.SortOrder
-  free_delivery_after?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  delivery_charge?: Prisma.SortOrder
+  free_delivery_after?: Prisma.SortOrder
+  handling_charge?: Prisma.SortOrder
   razorpayAccountId?: Prisma.SortOrder
   razorpayAccountStatus?: Prisma.SortOrder
 }
 
 export type StoreSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  handling_charge?: Prisma.SortOrder
   delivery_charge?: Prisma.SortOrder
   free_delivery_after?: Prisma.SortOrder
+  handling_charge?: Prisma.SortOrder
 }
 
 export type StoreListRelationFilter = {
@@ -698,19 +698,19 @@ export type StoreUncheckedUpdateManyWithoutCategoryNestedInput = {
 export type StoreCreateWithoutSellerDocumentsInput = {
   shop_name: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
-  product?: Prisma.ProductCreateNestedManyWithoutStoreInput
   address?: Prisma.AddressCreateNestedOneWithoutStoreInput
   bankDetails?: Prisma.BankDetailCreateNestedOneWithoutStoreInput
+  product?: Prisma.ProductCreateNestedManyWithoutStoreInput
+  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
 }
 
 export type StoreUncheckedCreateWithoutSellerDocumentsInput = {
@@ -718,18 +718,18 @@ export type StoreUncheckedCreateWithoutSellerDocumentsInput = {
   shop_name: string
   categoryId: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  product?: Prisma.ProductUncheckedCreateNestedManyWithoutStoreInput
   address?: Prisma.AddressUncheckedCreateNestedOneWithoutStoreInput
   bankDetails?: Prisma.BankDetailUncheckedCreateNestedOneWithoutStoreInput
+  product?: Prisma.ProductUncheckedCreateNestedManyWithoutStoreInput
 }
 
 export type StoreCreateOrConnectWithoutSellerDocumentsInput = {
@@ -751,19 +751,19 @@ export type StoreUpdateToOneWithWhereWithoutSellerDocumentsInput = {
 export type StoreUpdateWithoutSellerDocumentsInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
-  product?: Prisma.ProductUpdateManyWithoutStoreNestedInput
   address?: Prisma.AddressUpdateOneWithoutStoreNestedInput
   bankDetails?: Prisma.BankDetailUpdateOneWithoutStoreNestedInput
+  product?: Prisma.ProductUpdateManyWithoutStoreNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
 }
 
 export type StoreUncheckedUpdateWithoutSellerDocumentsInput = {
@@ -771,36 +771,36 @@ export type StoreUncheckedUpdateWithoutSellerDocumentsInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  product?: Prisma.ProductUncheckedUpdateManyWithoutStoreNestedInput
   address?: Prisma.AddressUncheckedUpdateOneWithoutStoreNestedInput
   bankDetails?: Prisma.BankDetailUncheckedUpdateOneWithoutStoreNestedInput
+  product?: Prisma.ProductUncheckedUpdateManyWithoutStoreNestedInput
 }
 
 export type StoreCreateWithoutBankDetailsInput = {
   shop_name: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
-  product?: Prisma.ProductCreateNestedManyWithoutStoreInput
   address?: Prisma.AddressCreateNestedOneWithoutStoreInput
+  product?: Prisma.ProductCreateNestedManyWithoutStoreInput
   sellerDocuments?: Prisma.SellerDocumentsCreateNestedOneWithoutStoreInput
+  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
 }
 
 export type StoreUncheckedCreateWithoutBankDetailsInput = {
@@ -808,17 +808,17 @@ export type StoreUncheckedCreateWithoutBankDetailsInput = {
   shop_name: string
   categoryId: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  product?: Prisma.ProductUncheckedCreateNestedManyWithoutStoreInput
   address?: Prisma.AddressUncheckedCreateNestedOneWithoutStoreInput
+  product?: Prisma.ProductUncheckedCreateNestedManyWithoutStoreInput
   sellerDocuments?: Prisma.SellerDocumentsUncheckedCreateNestedOneWithoutStoreInput
 }
 
@@ -841,19 +841,19 @@ export type StoreUpdateToOneWithWhereWithoutBankDetailsInput = {
 export type StoreUpdateWithoutBankDetailsInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
-  product?: Prisma.ProductUpdateManyWithoutStoreNestedInput
   address?: Prisma.AddressUpdateOneWithoutStoreNestedInput
+  product?: Prisma.ProductUpdateManyWithoutStoreNestedInput
   sellerDocuments?: Prisma.SellerDocumentsUpdateOneWithoutStoreNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
 }
 
 export type StoreUncheckedUpdateWithoutBankDetailsInput = {
@@ -861,36 +861,36 @@ export type StoreUncheckedUpdateWithoutBankDetailsInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  product?: Prisma.ProductUncheckedUpdateManyWithoutStoreNestedInput
   address?: Prisma.AddressUncheckedUpdateOneWithoutStoreNestedInput
+  product?: Prisma.ProductUncheckedUpdateManyWithoutStoreNestedInput
   sellerDocuments?: Prisma.SellerDocumentsUncheckedUpdateOneWithoutStoreNestedInput
 }
 
 export type StoreCreateWithoutAddressInput = {
   shop_name: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
+  bankDetails?: Prisma.BankDetailCreateNestedOneWithoutStoreInput
   product?: Prisma.ProductCreateNestedManyWithoutStoreInput
   sellerDocuments?: Prisma.SellerDocumentsCreateNestedOneWithoutStoreInput
-  bankDetails?: Prisma.BankDetailCreateNestedOneWithoutStoreInput
+  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
 }
 
 export type StoreUncheckedCreateWithoutAddressInput = {
@@ -898,18 +898,18 @@ export type StoreUncheckedCreateWithoutAddressInput = {
   shop_name: string
   categoryId: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
+  bankDetails?: Prisma.BankDetailUncheckedCreateNestedOneWithoutStoreInput
   product?: Prisma.ProductUncheckedCreateNestedManyWithoutStoreInput
   sellerDocuments?: Prisma.SellerDocumentsUncheckedCreateNestedOneWithoutStoreInput
-  bankDetails?: Prisma.BankDetailUncheckedCreateNestedOneWithoutStoreInput
 }
 
 export type StoreCreateOrConnectWithoutAddressInput = {
@@ -931,19 +931,19 @@ export type StoreUpdateToOneWithWhereWithoutAddressInput = {
 export type StoreUpdateWithoutAddressInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
+  bankDetails?: Prisma.BankDetailUpdateOneWithoutStoreNestedInput
   product?: Prisma.ProductUpdateManyWithoutStoreNestedInput
   sellerDocuments?: Prisma.SellerDocumentsUpdateOneWithoutStoreNestedInput
-  bankDetails?: Prisma.BankDetailUpdateOneWithoutStoreNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
 }
 
 export type StoreUncheckedUpdateWithoutAddressInput = {
@@ -951,36 +951,36 @@ export type StoreUncheckedUpdateWithoutAddressInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankDetails?: Prisma.BankDetailUncheckedUpdateOneWithoutStoreNestedInput
   product?: Prisma.ProductUncheckedUpdateManyWithoutStoreNestedInput
   sellerDocuments?: Prisma.SellerDocumentsUncheckedUpdateOneWithoutStoreNestedInput
-  bankDetails?: Prisma.BankDetailUncheckedUpdateOneWithoutStoreNestedInput
 }
 
 export type StoreCreateWithoutProductInput = {
   shop_name: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
   address?: Prisma.AddressCreateNestedOneWithoutStoreInput
-  sellerDocuments?: Prisma.SellerDocumentsCreateNestedOneWithoutStoreInput
   bankDetails?: Prisma.BankDetailCreateNestedOneWithoutStoreInput
+  sellerDocuments?: Prisma.SellerDocumentsCreateNestedOneWithoutStoreInput
+  category: Prisma.CategoryCreateNestedOneWithoutStoresInput
 }
 
 export type StoreUncheckedCreateWithoutProductInput = {
@@ -988,18 +988,18 @@ export type StoreUncheckedCreateWithoutProductInput = {
   shop_name: string
   categoryId: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
   address?: Prisma.AddressUncheckedCreateNestedOneWithoutStoreInput
-  sellerDocuments?: Prisma.SellerDocumentsUncheckedCreateNestedOneWithoutStoreInput
   bankDetails?: Prisma.BankDetailUncheckedCreateNestedOneWithoutStoreInput
+  sellerDocuments?: Prisma.SellerDocumentsUncheckedCreateNestedOneWithoutStoreInput
 }
 
 export type StoreCreateOrConnectWithoutProductInput = {
@@ -1021,19 +1021,19 @@ export type StoreUpdateToOneWithWhereWithoutProductInput = {
 export type StoreUpdateWithoutProductInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
   address?: Prisma.AddressUpdateOneWithoutStoreNestedInput
-  sellerDocuments?: Prisma.SellerDocumentsUpdateOneWithoutStoreNestedInput
   bankDetails?: Prisma.BankDetailUpdateOneWithoutStoreNestedInput
+  sellerDocuments?: Prisma.SellerDocumentsUpdateOneWithoutStoreNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutStoresNestedInput
 }
 
 export type StoreUncheckedUpdateWithoutProductInput = {
@@ -1041,55 +1041,55 @@ export type StoreUncheckedUpdateWithoutProductInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.AddressUncheckedUpdateOneWithoutStoreNestedInput
-  sellerDocuments?: Prisma.SellerDocumentsUncheckedUpdateOneWithoutStoreNestedInput
   bankDetails?: Prisma.BankDetailUncheckedUpdateOneWithoutStoreNestedInput
+  sellerDocuments?: Prisma.SellerDocumentsUncheckedUpdateOneWithoutStoreNestedInput
 }
 
 export type StoreCreateWithoutCategoryInput = {
   shop_name: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  product?: Prisma.ProductCreateNestedManyWithoutStoreInput
   address?: Prisma.AddressCreateNestedOneWithoutStoreInput
-  sellerDocuments?: Prisma.SellerDocumentsCreateNestedOneWithoutStoreInput
   bankDetails?: Prisma.BankDetailCreateNestedOneWithoutStoreInput
+  product?: Prisma.ProductCreateNestedManyWithoutStoreInput
+  sellerDocuments?: Prisma.SellerDocumentsCreateNestedOneWithoutStoreInput
 }
 
 export type StoreUncheckedCreateWithoutCategoryInput = {
   id?: number
   shop_name: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
-  product?: Prisma.ProductUncheckedCreateNestedManyWithoutStoreInput
   address?: Prisma.AddressUncheckedCreateNestedOneWithoutStoreInput
-  sellerDocuments?: Prisma.SellerDocumentsUncheckedCreateNestedOneWithoutStoreInput
   bankDetails?: Prisma.BankDetailUncheckedCreateNestedOneWithoutStoreInput
+  product?: Prisma.ProductUncheckedCreateNestedManyWithoutStoreInput
+  sellerDocuments?: Prisma.SellerDocumentsUncheckedCreateNestedOneWithoutStoreInput
 }
 
 export type StoreCreateOrConnectWithoutCategoryInput = {
@@ -1126,13 +1126,13 @@ export type StoreScalarWhereInput = {
   shop_name?: Prisma.StringFilter<"Store"> | string
   categoryId?: Prisma.StringFilter<"Store"> | string
   home_delivery?: Prisma.BoolNullableFilter<"Store"> | boolean | null
-  handling_charge?: Prisma.IntNullableFilter<"Store"> | number | null
-  delivery_charge?: Prisma.IntNullableFilter<"Store"> | number | null
-  free_delivery_after?: Prisma.IntNullableFilter<"Store"> | number | null
   isActive?: Prisma.BoolNullableFilter<"Store"> | boolean | null
   userId?: Prisma.StringFilter<"Store"> | string
   createdAt?: Prisma.DateTimeFilter<"Store"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Store"> | Date | string
+  delivery_charge?: Prisma.IntNullableFilter<"Store"> | number | null
+  free_delivery_after?: Prisma.IntNullableFilter<"Store"> | number | null
+  handling_charge?: Prisma.IntNullableFilter<"Store"> | number | null
   razorpayAccountId?: Prisma.StringNullableFilter<"Store"> | string | null
   razorpayAccountStatus?: Prisma.StringNullableFilter<"Store"> | string | null
 }
@@ -1141,13 +1141,13 @@ export type StoreCreateManyCategoryInput = {
   id?: number
   shop_name: string
   home_delivery?: boolean | null
-  handling_charge?: number | null
-  delivery_charge?: number | null
-  free_delivery_after?: number | null
   isActive?: boolean | null
   userId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  delivery_charge?: number | null
+  free_delivery_after?: number | null
+  handling_charge?: number | null
   razorpayAccountId?: string | null
   razorpayAccountStatus?: string | null
 }
@@ -1155,51 +1155,51 @@ export type StoreCreateManyCategoryInput = {
 export type StoreUpdateWithoutCategoryInput = {
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  product?: Prisma.ProductUpdateManyWithoutStoreNestedInput
   address?: Prisma.AddressUpdateOneWithoutStoreNestedInput
-  sellerDocuments?: Prisma.SellerDocumentsUpdateOneWithoutStoreNestedInput
   bankDetails?: Prisma.BankDetailUpdateOneWithoutStoreNestedInput
+  product?: Prisma.ProductUpdateManyWithoutStoreNestedInput
+  sellerDocuments?: Prisma.SellerDocumentsUpdateOneWithoutStoreNestedInput
 }
 
 export type StoreUncheckedUpdateWithoutCategoryInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  product?: Prisma.ProductUncheckedUpdateManyWithoutStoreNestedInput
   address?: Prisma.AddressUncheckedUpdateOneWithoutStoreNestedInput
-  sellerDocuments?: Prisma.SellerDocumentsUncheckedUpdateOneWithoutStoreNestedInput
   bankDetails?: Prisma.BankDetailUncheckedUpdateOneWithoutStoreNestedInput
+  product?: Prisma.ProductUncheckedUpdateManyWithoutStoreNestedInput
+  sellerDocuments?: Prisma.SellerDocumentsUncheckedUpdateOneWithoutStoreNestedInput
 }
 
 export type StoreUncheckedUpdateManyWithoutCategoryInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   shop_name?: Prisma.StringFieldUpdateOperationsInput | string
   home_delivery?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
-  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  delivery_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  free_delivery_after?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  handling_charge?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   razorpayAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   razorpayAccountStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -1240,20 +1240,20 @@ export type StoreSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   shop_name?: boolean
   categoryId?: boolean
   home_delivery?: boolean
-  handling_charge?: boolean
-  delivery_charge?: boolean
-  free_delivery_after?: boolean
   isActive?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  delivery_charge?: boolean
+  free_delivery_after?: boolean
+  handling_charge?: boolean
   razorpayAccountId?: boolean
   razorpayAccountStatus?: boolean
-  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
-  product?: boolean | Prisma.Store$productArgs<ExtArgs>
   address?: boolean | Prisma.Store$addressArgs<ExtArgs>
-  sellerDocuments?: boolean | Prisma.Store$sellerDocumentsArgs<ExtArgs>
   bankDetails?: boolean | Prisma.Store$bankDetailsArgs<ExtArgs>
+  product?: boolean | Prisma.Store$productArgs<ExtArgs>
+  sellerDocuments?: boolean | Prisma.Store$sellerDocumentsArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.StoreCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["store"]>
 
@@ -1262,13 +1262,13 @@ export type StoreSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   shop_name?: boolean
   categoryId?: boolean
   home_delivery?: boolean
-  handling_charge?: boolean
-  delivery_charge?: boolean
-  free_delivery_after?: boolean
   isActive?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  delivery_charge?: boolean
+  free_delivery_after?: boolean
+  handling_charge?: boolean
   razorpayAccountId?: boolean
   razorpayAccountStatus?: boolean
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
@@ -1279,13 +1279,13 @@ export type StoreSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   shop_name?: boolean
   categoryId?: boolean
   home_delivery?: boolean
-  handling_charge?: boolean
-  delivery_charge?: boolean
-  free_delivery_after?: boolean
   isActive?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  delivery_charge?: boolean
+  free_delivery_after?: boolean
+  handling_charge?: boolean
   razorpayAccountId?: boolean
   razorpayAccountStatus?: boolean
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
@@ -1296,24 +1296,24 @@ export type StoreSelectScalar = {
   shop_name?: boolean
   categoryId?: boolean
   home_delivery?: boolean
-  handling_charge?: boolean
-  delivery_charge?: boolean
-  free_delivery_after?: boolean
   isActive?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  delivery_charge?: boolean
+  free_delivery_after?: boolean
+  handling_charge?: boolean
   razorpayAccountId?: boolean
   razorpayAccountStatus?: boolean
 }
 
-export type StoreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "shop_name" | "categoryId" | "home_delivery" | "handling_charge" | "delivery_charge" | "free_delivery_after" | "isActive" | "userId" | "createdAt" | "updatedAt" | "razorpayAccountId" | "razorpayAccountStatus", ExtArgs["result"]["store"]>
+export type StoreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "shop_name" | "categoryId" | "home_delivery" | "isActive" | "userId" | "createdAt" | "updatedAt" | "delivery_charge" | "free_delivery_after" | "handling_charge" | "razorpayAccountId" | "razorpayAccountStatus", ExtArgs["result"]["store"]>
 export type StoreInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
-  product?: boolean | Prisma.Store$productArgs<ExtArgs>
   address?: boolean | Prisma.Store$addressArgs<ExtArgs>
-  sellerDocuments?: boolean | Prisma.Store$sellerDocumentsArgs<ExtArgs>
   bankDetails?: boolean | Prisma.Store$bankDetailsArgs<ExtArgs>
+  product?: boolean | Prisma.Store$productArgs<ExtArgs>
+  sellerDocuments?: boolean | Prisma.Store$sellerDocumentsArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.StoreCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StoreIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1326,24 +1326,24 @@ export type StoreIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $StorePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Store"
   objects: {
-    category: Prisma.$CategoryPayload<ExtArgs>
-    product: Prisma.$ProductPayload<ExtArgs>[]
     address: Prisma.$AddressPayload<ExtArgs> | null
-    sellerDocuments: Prisma.$SellerDocumentsPayload<ExtArgs> | null
     bankDetails: Prisma.$BankDetailPayload<ExtArgs> | null
+    product: Prisma.$ProductPayload<ExtArgs>[]
+    sellerDocuments: Prisma.$SellerDocumentsPayload<ExtArgs> | null
+    category: Prisma.$CategoryPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     shop_name: string
     categoryId: string
     home_delivery: boolean | null
-    handling_charge: number | null
-    delivery_charge: number | null
-    free_delivery_after: number | null
     isActive: boolean | null
     userId: string
     createdAt: Date
     updatedAt: Date
+    delivery_charge: number | null
+    free_delivery_after: number | null
+    handling_charge: number | null
     razorpayAccountId: string | null
     razorpayAccountStatus: string | null
   }, ExtArgs["result"]["store"]>
@@ -1740,11 +1740,11 @@ readonly fields: StoreFieldRefs;
  */
 export interface Prisma__StoreClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  category<T extends Prisma.CategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  product<T extends Prisma.Store$productArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Store$productArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   address<T extends Prisma.Store$addressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Store$addressArgs<ExtArgs>>): Prisma.Prisma__AddressClient<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  sellerDocuments<T extends Prisma.Store$sellerDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Store$sellerDocumentsArgs<ExtArgs>>): Prisma.Prisma__SellerDocumentsClient<runtime.Types.Result.GetResult<Prisma.$SellerDocumentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   bankDetails<T extends Prisma.Store$bankDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Store$bankDetailsArgs<ExtArgs>>): Prisma.Prisma__BankDetailClient<runtime.Types.Result.GetResult<Prisma.$BankDetailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  product<T extends Prisma.Store$productArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Store$productArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sellerDocuments<T extends Prisma.Store$sellerDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Store$sellerDocumentsArgs<ExtArgs>>): Prisma.Prisma__SellerDocumentsClient<runtime.Types.Result.GetResult<Prisma.$SellerDocumentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  category<T extends Prisma.CategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1778,13 +1778,13 @@ export interface StoreFieldRefs {
   readonly shop_name: Prisma.FieldRef<"Store", 'String'>
   readonly categoryId: Prisma.FieldRef<"Store", 'String'>
   readonly home_delivery: Prisma.FieldRef<"Store", 'Boolean'>
-  readonly handling_charge: Prisma.FieldRef<"Store", 'Int'>
-  readonly delivery_charge: Prisma.FieldRef<"Store", 'Int'>
-  readonly free_delivery_after: Prisma.FieldRef<"Store", 'Int'>
   readonly isActive: Prisma.FieldRef<"Store", 'Boolean'>
   readonly userId: Prisma.FieldRef<"Store", 'String'>
   readonly createdAt: Prisma.FieldRef<"Store", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Store", 'DateTime'>
+  readonly delivery_charge: Prisma.FieldRef<"Store", 'Int'>
+  readonly free_delivery_after: Prisma.FieldRef<"Store", 'Int'>
+  readonly handling_charge: Prisma.FieldRef<"Store", 'Int'>
   readonly razorpayAccountId: Prisma.FieldRef<"Store", 'String'>
   readonly razorpayAccountStatus: Prisma.FieldRef<"Store", 'String'>
 }
@@ -2183,6 +2183,44 @@ export type StoreDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Store.address
+ */
+export type Store$addressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Address
+   */
+  select?: Prisma.AddressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Address
+   */
+  omit?: Prisma.AddressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AddressInclude<ExtArgs> | null
+  where?: Prisma.AddressWhereInput
+}
+
+/**
+ * Store.bankDetails
+ */
+export type Store$bankDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BankDetail
+   */
+  select?: Prisma.BankDetailSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BankDetail
+   */
+  omit?: Prisma.BankDetailOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BankDetailInclude<ExtArgs> | null
+  where?: Prisma.BankDetailWhereInput
+}
+
+/**
  * Store.product
  */
 export type Store$productArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2207,25 +2245,6 @@ export type Store$productArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * Store.address
- */
-export type Store$addressArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Address
-   */
-  select?: Prisma.AddressSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Address
-   */
-  omit?: Prisma.AddressOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AddressInclude<ExtArgs> | null
-  where?: Prisma.AddressWhereInput
-}
-
-/**
  * Store.sellerDocuments
  */
 export type Store$sellerDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2242,25 +2261,6 @@ export type Store$sellerDocumentsArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   include?: Prisma.SellerDocumentsInclude<ExtArgs> | null
   where?: Prisma.SellerDocumentsWhereInput
-}
-
-/**
- * Store.bankDetails
- */
-export type Store$bankDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BankDetail
-   */
-  select?: Prisma.BankDetailSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BankDetail
-   */
-  omit?: Prisma.BankDetailOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BankDetailInclude<ExtArgs> | null
-  where?: Prisma.BankDetailWhereInput
 }
 
 /**

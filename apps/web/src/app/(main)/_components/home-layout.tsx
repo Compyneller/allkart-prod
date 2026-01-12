@@ -9,7 +9,8 @@ import NearByStores from "./near-by-stores";
 
 const HomeLayout = () => {
   const { location: coordinates, error, isLoading: LocationLoading } = useCoordinates()
-  const { data, isLoading } = fetchStores({ latitude: coordinates?.lat!, longitude: coordinates?.lng! })
+  const { data, isLoading } = fetchStores({ latitude: coordinates?.lat, longitude: coordinates?.lng })
+
 
 
 
@@ -90,7 +91,7 @@ const HomeLayout = () => {
   }
 
 
-  if (data?.length === 0) {
+  if (data?.stores?.length === 0) {
     return (
       <div className="flex h-screen items-center justify-center">
         <p>No stores found in your area</p>
@@ -111,8 +112,8 @@ const HomeLayout = () => {
     <Container>
       {/* <TopCarousel /> */}
       <CategoryListing />
-      <NearByStores data={data} />
-      <HomeProducts />
+      <NearByStores data={data?.stores} />
+      <HomeProducts data={data?.products} />
     </Container>
   );
 };

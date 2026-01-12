@@ -4,25 +4,26 @@ import Link from "next/link";
 import AddToCart from "../add-to-cart-button";
 import { Separator } from "../ui/separator";
 import { VariantDrawer } from "./variant-drawer";
+import { Button } from "../ui/button";
 
 const ProductCard = ({
   pid,
   title,
   data,
-  product,
+  count,
   options = true,
 }: {
   options?: boolean;
   pid: number;
   title: string;
   data: ProductVariant;
-  product: ProductType;
+  count: number;
 }) => {
   return (
     <div className="w-full group rounded-lg prod-card relative">
       <Link
         className="flex flex-col justify-center mb-3 gap-2"
-        href={`/product/${product.id}/variant/${data?.id}`}
+        href={`/product/${pid}/variant/${data?.id}`}
       >
         <div className="aspect-square relative bg-accent flex items-center justify-center w-full rounded-t-lg">
           <Image
@@ -33,7 +34,7 @@ const ProductCard = ({
           />
         </div>
         <div className=" space-y-0.5">
-          <p className="font-semibold text-lg capitalize">{title}</p>
+          <p className="font-semibold  capitalize">{title}</p>
           <Separator />
           <div className="flex items-center text-muted-foreground justify-between gap-2">
             <p>
@@ -49,11 +50,10 @@ const ProductCard = ({
           </div>
         </div>
       </Link>
-      {product?.variants?.length > 1 && options ? (
+      {count > 1 && options ? (
         <VariantDrawer
           pid={pid}
-          title={product?.title}
-          variants={product?.variants!}
+          count={count}
         />
       ) : (
         <AddToCart

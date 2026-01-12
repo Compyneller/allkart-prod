@@ -1,43 +1,62 @@
 import { prisma } from "@repo/db";
 import redisClient from "@repo/redis-client";
+import ngeohash from "ngeohash";
 
+// Define a type so we don't lie to TypeScript
+type StoreWithAddress = Awaited<ReturnType<typeof prisma.store.findMany>>[number];
+type StoreWithAddressAndDistance = StoreWithAddress & { distance: number };
 export const getNearByStore = async ({ latitude, longitude }: { latitude: number, longitude: number }) => {
-    const radiusKm = 5;
-    const cachedData = await redisClient.get(`nearby-stores-${latitude}-${longitude}`);
+    const RADIUS_METERS = 5000;
+    const CACHE_TTL = 60 * 5;
+    const geoHash = ngeohash.encode(latitude, longitude, 6);
 
+    const cacheKey = `nearby-stores-data:${geoHash}`;
+
+    const cachedData = await redisClient.get(cacheKey);
     if (cachedData) {
-        console.log('cached hit');
 
-        return JSON.parse(cachedData);
+
+        return JSON.parse(cachedData) as (StoreWithAddress & { distance: number })[];
     }
 
-    const stores = await prisma.$queryRaw`
-    WITH calculated_stores AS (
+    const stores = await prisma.$queryRaw<StoreWithAddressAndDistance[]>`
         SELECT 
-            s.*, 
-            a.lat, 
-            a.long,
+            -- Store Details
+            s.id,
+            s.shop_name,
+            s."categoryId",
+            s."home_delivery",
+            s."delivery_charge",
+            s."handling_charge",
+            s."free_delivery_after",
+            s."isActive",
+            
+            -- Address Details (Renamed to avoid collisions if needed)
             a.address,
             a.city,
-            (
-                6371 * acos(
-                    cos(radians(${latitude})) * cos(radians(a.lat)) 
-                    * cos(radians(a.long) - radians(${longitude})) 
-                    + sin(radians(${latitude})) * sin(radians(a.lat))
-                )
-            ) AS distance
+            a.landmark,
+            a.pincode,
+            
+            -- Calculated Distance
+            ST_Distance(
+                a.coordinates,
+                ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography
+            ) as distance
+
         FROM "address" a
-        INNER JOIN "store" s ON a."storeId" = s."id"
-        WHERE s."isActive" = true
-    )
-    SELECT * FROM calculated_stores 
-    WHERE distance <= ${radiusKm} 
-    ORDER BY distance ASC;
-`;
+        INNER JOIN "store" s ON s.id = a."storeId"  -- <--- THE JOIN
+        WHERE 
+            s."isActive" = true -- Filter active stores first
+            AND ST_DWithin(
+                a.coordinates, 
+                ST_SetSRID(ST_MakePoint(${longitude}, ${latitude}), 4326)::geography, 
+                ${RADIUS_METERS}
+            )
+        ORDER BY distance ASC;
+    `;
 
-
-    await redisClient.set(`nearby-stores-${latitude}-${longitude}`, JSON.stringify(stores), {
-        EX: 60 * 5
+    await redisClient.set(cacheKey, JSON.stringify(stores), {
+        EX: CACHE_TTL
     });
 
     return stores;

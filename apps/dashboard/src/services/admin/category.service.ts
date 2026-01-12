@@ -44,19 +44,19 @@ export const deleteCategoryService = async ({ id }: { id: string }) => {
 export const getCategoriesWithProductsService = async (): Promise<
   CategoryType[]
 > => {
-  const response = await prisma.category.findMany({
-    include: {
-      products: {
-        take: 8,
-        include: {
-          variants: {
-            include: {
-              prod_img: true,
-            },
-          },
-        },
-      },
-    },
-  });
-  return response;
+  // const response = await prisma.category.findMany({
+  //   include: {
+  //     products: {
+  //       take: 8,
+  //       include: {
+  //         variants: {
+  //           include: {
+  //             prod_img: true,
+  //           },
+  //         },
+  //       },
+  //     },
+  //   },
+  // });
+  return [];
 };

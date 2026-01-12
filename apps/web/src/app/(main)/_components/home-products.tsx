@@ -1,54 +1,23 @@
 import ProductCard from "@/components/product/product-card";
-import ProductSkeleton from "@/components/skeletons/product-skeleton";
-import { fetchAllProducts } from "data/allProducts";
-import Link from "next/link";
-const HomeProducts = () => {
-  const { data, isLoading, error } = fetchAllProducts();
-
-  if (isLoading) {
-    return <ProductSkeleton />;
-  }
-
-
-  if (data?.length === 0 || error) {
-    return <div className="w-full h-screen flex items-center justify-center"><div className="p-5 rounded-lg">
-      <h5 className="text-2xl font-semibold">No Products Found</h5>
-    </div> </div>
-  }
-
-
-
+import { ProductType } from "@repo/types";
+const HomeProducts = ({ data }: { data: ProductType[] }) => {
+  console.log(data)
   return (
-    <>
-      {data?.map((cat) => (
-        <div key={cat.id}>
-          {cat?.products?.length! > 0 && (
-            <div className="mb-5 space-y-2">
-              <div className="flex items-center justify-between">
-                <h5 className="text-xl font-semibold">{cat.name}</h5>
-                <Link
-                  href={`/cat/${cat?.id}`}
-                  className="text-primary font-semibold">
-                  See All
-                </Link>
-              </div>
+    <div>
+      <h5 className='text-xl mb-3 font-semibold'>Products</h5>
 
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6">
-                {cat?.products?.map((product) => (
-                  <ProductCard
-                    pid={product?.id}
-                    title={product?.title}
-                    data={product?.variants[0]!}
-                    product={product}
-                    key={product.id}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-    </>
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        {data?.map((prod) => (
+          <ProductCard
+            pid={prod?.id}
+            title={prod?.title}
+            key={prod?.id}
+            count={prod?._count?.variants!}
+            data={prod?.variants[0]!}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

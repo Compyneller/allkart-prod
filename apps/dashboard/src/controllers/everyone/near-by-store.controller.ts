@@ -10,7 +10,7 @@ export const getNearByStoreController = async (req: Request, res: Response) => {
     }
     try {
 
-        const stores = await getNearByStore({ latitude: Number(latitude), longitude: Number(longitude) });
+        const stores = await getNearByStore({ latitude: latitude as unknown as number, longitude: longitude as unknown as number });
         return res.status(200).json({
             success: true,
             data: stores
