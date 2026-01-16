@@ -12,8 +12,6 @@ const HomeLayout = () => {
   const { data, isLoading } = fetchStores({ latitude: coordinates?.lat, longitude: coordinates?.lng })
 
 
-
-
   if (LocationLoading) {
 
     return <Loader />

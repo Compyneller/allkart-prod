@@ -21,6 +21,7 @@ import { Cart } from "./cart/cart";
 import { ModeToggle } from "./toggle";
 import { Spinner } from "./ui/spinner";
 import User from "./user/user";
+import Search from "./Home/seach";
 
 const navigationLinks = [
   {
@@ -57,7 +58,7 @@ export default function Navbar() {
         </div>
         <div className=" hidden md:flex  items-center flex-1 gap-2">
           {/* <SearchIcon /> */}
-          <Input placeholder="Search" />
+          <Search />
         </div>
         <div className="flex items-center gap-2 max-md:hidden">
 

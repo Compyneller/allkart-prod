@@ -20,6 +20,9 @@ export const fetchStores = ({ latitude, longitude }: { latitude?: number; longit
     const fetchStoreData = async () => {
         const { data } = await api.get(`/api/v1/get-stores?latitude=${latitude}&longitude=${longitude}`);
 
+        const storeIds = data?.stores?.map((store: StoreWithAddress) => store.id);
+
+
         return data;
     };
     const { data, error, isLoading } = useQuery({

@@ -112,18 +112,38 @@ export const productDetailService = async (
 
 export const getProductRelatedToCategoryService = async (
   categoryId: string
-): Promise<ProductType[]> => {
+) => {
   const products = await prisma.product.findMany({
     where: {
       categoryId: categoryId,
     },
-    include: {
-      variants: {
-        include: {
-          prod_img: true,
-        },
+    select: {
+      id: true,
+      title: true,
+
+      // 1. GET THE COUNT (Super fast, no object fetching)
+      _count: {
+        select: { variants: true }
       },
-    },
+
+      // 2. GET ONLY THE "DISPLAY" VARIANT
+      variants: {
+        where: { stock: { gt: 0 } },
+        orderBy: { selling_price: 'asc' }, // Show the "Starting at" price
+        take: 1, // <--- Only fetch ONE
+        select: {
+          id: true,
+          selling_price: true,
+          mrp: true,
+          unit: true,       // "kg", "size"
+          unit_value: true, // "1", "XL"
+          prod_img: {
+            take: 1, // Only fetch ONE image
+            select: { url: true }
+          }
+        }
+      }
+    }
   });
 
   return products;
